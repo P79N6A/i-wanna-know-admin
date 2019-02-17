@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import moment from 'moment';
-import { connect } from 'dva';
-import { Row, Col, Form, Card, Select, List } from 'antd';
+import {connect} from 'dva';
+import {Row, Col, Form, Card, Select, List} from 'antd';
 
 import TagSelect from 'components/TagSelect';
 import AvatarList from 'components/AvatarList';
@@ -10,12 +10,12 @@ import StandardFormRow from 'components/StandardFormRow';
 
 import styles from './Projects.less';
 
-const { Option } = Select;
+const {Option} = Select;
 const FormItem = Form.Item;
 
 /* eslint react/no-array-index-key: 0 */
 @Form.create()
-@connect(({ list, loading }) => ({
+@connect(({list, loading}) => ({
   list,
   loading: loading.models.list,
 }))
@@ -30,8 +30,9 @@ export default class CoverCardList extends PureComponent {
   }
 
   handleFormSubmit = () => {
-    const { form, dispatch } = this.props;
+    const {form, dispatch} = this.props;
     // setTimeout 用于保证获取表单值是在所有表单字段更新完毕的时候
+
     setTimeout(() => {
       form.validateFields(err => {
         if (!err) {
@@ -48,25 +49,26 @@ export default class CoverCardList extends PureComponent {
   };
 
   render() {
-    const { list: { list = [] }, loading, form } = this.props;
-    const { getFieldDecorator } = form;
+    const {list: {list = []}, loading, form} = this.props;
+    const {getFieldDecorator} = form;
 
     const cardList = list ? (
       <List
         rowKey="id"
         loading={loading}
-        grid={{ gutter: 24, xl: 4, lg: 3, md: 3, sm: 2, xs: 1 }}
+        grid={{gutter: 24, xl: 4, lg: 3, md: 3, sm: 2, xs: 1}}
         dataSource={list}
         renderItem={item => (
           <List.Item>
             <Card
               className={styles.card}
               hoverable
-              cover={<img alt={item.title} src={item.cover} height={154} />}
-            >
+              cover={<img alt={item.title} src={item.cover} height={154} />}>
               <Card.Meta
                 title={<a href="#">{item.title}</a>}
-                description={<Ellipsis lines={2}>{item.subDescription}</Ellipsis>}
+                description={
+                  <Ellipsis lines={2}>{item.subDescription}</Ellipsis>
+                }
               />
               <div className={styles.cardItemContent}>
                 <span>{moment(item.updatedAt).fromNow()}</span>
@@ -90,8 +92,8 @@ export default class CoverCardList extends PureComponent {
 
     const formItemLayout = {
       wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 },
+        xs: {span: 24},
+        sm: {span: 16},
       },
     };
 
@@ -99,7 +101,7 @@ export default class CoverCardList extends PureComponent {
       <div className={styles.coverCardList}>
         <Card bordered={false}>
           <Form layout="inline">
-            <StandardFormRow title="所属类目" block style={{ paddingBottom: 11 }}>
+            <StandardFormRow title="所属类目" block style={{paddingBottom: 11}}>
               <FormItem>
                 {getFieldDecorator('category')(
                   <TagSelect onChange={this.handleFormSubmit} expandable>
@@ -127,8 +129,7 @@ export default class CoverCardList extends PureComponent {
                       <Select
                         onChange={this.handleFormSubmit}
                         placeholder="不限"
-                        style={{ maxWidth: 200, width: '100%' }}
-                      >
+                        style={{maxWidth: 200, width: '100%'}}>
                         <Option value="lisa">王昭君</Option>
                       </Select>
                     )}
@@ -140,8 +141,7 @@ export default class CoverCardList extends PureComponent {
                       <Select
                         onChange={this.handleFormSubmit}
                         placeholder="不限"
-                        style={{ maxWidth: 200, width: '100%' }}
-                      >
+                        style={{maxWidth: 200, width: '100%'}}>
                         <Option value="good">优秀</Option>
                         <Option value="normal">普通</Option>
                       </Select>

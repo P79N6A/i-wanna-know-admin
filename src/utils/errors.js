@@ -1,4 +1,4 @@
-import { message } from 'antd';
+import {message} from 'antd';
 
 function handleError(networkError) {
   if (!networkError.response) {
@@ -12,7 +12,7 @@ function handleError(networkError) {
   if (status === 400) {
     message.error('请求错误');
   } else if (status === 403) {
-    message.error('没有权限访问');
+    message.error('拒绝访问');
   } else if (status === 500) {
     message.error('哎呀，服务器开小差啦');
   }

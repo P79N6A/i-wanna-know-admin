@@ -1,6 +1,6 @@
 import fetch from 'dva/fetch';
-import { notification } from 'antd';
-import { routerRedux } from 'dva/router';
+import {notification} from 'antd';
+import {routerRedux} from 'dva/router';
 import store from '../index';
 
 const codeMessage = {
@@ -20,16 +20,19 @@ const codeMessage = {
   503: '服务不可用，服务器暂时过载或维护。',
   504: '网关超时。',
 };
+
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
   const errortext = codeMessage[response.status] || response.statusText;
+
   notification.error({
     message: `请求错误 ${response.status}: ${response.url}`,
     description: errortext,
   });
   const error = new Error(errortext);
+
   error.name = response.status;
   error.response = response;
   throw error;
@@ -46,7 +49,8 @@ export default function request(url, options) {
   const defaultOptions = {
     credentials: 'include',
   };
-  const newOptions = { ...defaultOptions, ...options };
+  const newOptions = {...defaultOptions, ...options};
+
   if (newOptions.method === 'POST' || newOptions.method === 'PUT') {
     if (!(newOptions.body instanceof FormData)) {
       newOptions.headers = {
@@ -70,24 +74,29 @@ export default function request(url, options) {
       if (newOptions.method === 'DELETE' || response.status === 204) {
         return response.text();
       }
-      return response.json();
+      
+return response.json();
     })
     .catch(e => {
-      const { dispatch } = store;
+      const {dispatch} = store;
       const status = e.name;
+
       if (status === 401) {
         dispatch({
           type: 'login/logout',
         });
-        return;
+        
+return;
       }
       if (status === 403) {
         dispatch(routerRedux.push('/exception/403'));
-        return;
+        
+return;
       }
       if (status <= 504 && status >= 500) {
         dispatch(routerRedux.push('/exception/500'));
-        return;
+        
+return;
       }
       if (status >= 404 && status < 422) {
         dispatch(routerRedux.push('/exception/404'));

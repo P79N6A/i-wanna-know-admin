@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spin } from 'antd';
+import {Spin} from 'antd';
 
 export default class PromiseRender extends React.PureComponent {
   state = {
@@ -16,6 +16,7 @@ export default class PromiseRender extends React.PureComponent {
   setRenderComponent(props) {
     const ok = this.checkIsInstantiation(props.ok);
     const error = this.checkIsInstantiation(props.error);
+
     props.promise
       .then(() => {
         this.setState({
@@ -36,11 +37,14 @@ export default class PromiseRender extends React.PureComponent {
     if (!React.isValidElement(target)) {
       return target;
     }
-    return () => target;
+    
+return () => target;
   };
   render() {
     const Component = this.state.component;
-    return Component ? (
+
+    
+return Component ? (
       <Component {...this.props} />
     ) : (
       <div
@@ -50,8 +54,7 @@ export default class PromiseRender extends React.PureComponent {
           margin: 'auto',
           paddingTop: 50,
           textAlign: 'center',
-        }}
-      >
+        }}>
         <Spin size="large" />
       </div>
     );

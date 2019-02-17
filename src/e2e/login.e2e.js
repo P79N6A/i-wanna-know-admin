@@ -5,13 +5,17 @@ describe('Login', () => {
   let page;
 
   beforeAll(async () => {
-    browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+    browser = await puppeteer.launch({args: ['--no-sandbox']});
   });
 
   beforeEach(async () => {
     page = await browser.newPage();
-    await page.goto('http://localhost:8000/#/user/login', { waitUntil: 'networkidle2' });
-    await page.evaluate(() => window.localStorage.setItem('antd-pro-authority', 'guest'));
+    await page.goto('http://localhost:8000/#/user/login', {
+      waitUntil: 'networkidle2',
+    });
+    await page.evaluate(() =>
+      window.localStorage.setItem('antd-pro-authority', 'guest')
+    );
   });
 
   afterEach(() => page.close());
@@ -29,6 +33,7 @@ describe('Login', () => {
     await page.click('button[type="submit"]');
     await page.waitForSelector('.ant-layout-sider h1'); // should display error
     const text = await page.evaluate(() => document.body.innerHTML);
+
     expect(text).toContain('<h1>Ant Design Pro</h1>');
   });
 

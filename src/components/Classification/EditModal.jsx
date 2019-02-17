@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Input, Form, Upload, Icon, message } from 'antd';
-import { graphql, Query, Mutation } from 'react-apollo';
+import {Input, Form, Upload, Icon, message} from 'antd';
+import {graphql, Query, Mutation} from 'react-apollo';
 import gql from 'graphql-tag';
 import Modal from '../Modal/Modal';
 import ImageUpload from '../ImageUpload/ImageUpload';
-import { stat } from 'fs';
+import {stat} from 'fs';
 
 const FormItem = Form.Item;
 const ADD_CLASSIFICATIONS = gql`
@@ -32,16 +32,16 @@ class EditModal extends Component {
     visible: PropTypes.bool,
     handleOk: PropTypes.func,
     handleCancel: PropTypes.func,
-  }
+  };
 
   state = {
     _id: '',
     imageName: '',
     mutation: ADD_CLASSIFICATIONS,
-  }
+  };
 
-  handleOpen = (nextProps) => {
-    const { classification } = nextProps;
+  handleOpen = nextProps => {
+    const {classification} = nextProps;
 
     if (classification && classification._id) {
       this.props.form.setFieldsValue({
@@ -62,21 +62,22 @@ class EditModal extends Component {
         _id: '',
         imageName: '',
         mutation: ADD_CLASSIFICATIONS,
-      })
+      });
     }
-  }
+  };
 
-  handleUpload = (imageName) => {
+  handleUpload = imageName => {
     this.setState({
       imageName,
     });
-  }
+  };
 
-  handleOk = (mutation) => {
-    this.props.form.validateFields((errors, values) => {
+  handleOk = mutation => {
+    this.props.form.validateFieldsAndScroll((errors, values) => {
       if (!errors) {
         if (!this.state.imageName) {
           message.error('请上传分类图标');
+
           return;
         }
 
@@ -105,73 +106,60 @@ class EditModal extends Component {
           });
         }
       }
-    })
+    });
+  };
 
-  }
-
-  onSuccess = (data) => {
+  onSuccess = data => {
     if (data.info.code === 200) {
       message.success(data.info.message);
       this.props.handleOk();
     } else {
       message.error(data.info.message);
     }
-  }
+  };
 
   render() {
-    const { visible, classification } = this.props;
-    const { getFieldDecorator } = this.props.form;
+    const {visible, classification} = this.props;
+    const {getFieldDecorator} = this.props.form;
 
     return (
-      <Mutation
-        onCompleted={this.onSuccess}
-        mutation={this.state.mutation}>
-        {
-          (mutation, { data }) => (
-            <Modal
-              classification={classification}
-              maskClosable={false}
-              onCancel={this.props.handleCancel}
-              onOk={() => this.handleOk(mutation)}
-              handleOpen={this.handleOpen}
-              title={this.state._id ? '编辑分类' : '添加分类'}
-              visible={visible}
-            >
-              <Form>
-                <FormItem
-                  label="分类名"
-                >
-                  {
-                    getFieldDecorator('name', {
-                      rules: [{
-                        required: true,
-                        message: '分类名必须填写',
-                      }],
-                    })(<Input placeholder="分类名" />)
-                  }
-                </FormItem>
-                <FormItem
-                  label="分类简介"
-                >
-                  {
-                    getFieldDecorator('description')(<Input placeholder="分类简介" />)
-                  }
-                </FormItem>
-                <FormItem
-                  label="分类图标"
-                  required
-                >
-                  <ImageUpload
-                    onChange={this.handleUpload}
-                    imageName={this.state.imageName}>
-                  </ImageUpload>
-                </FormItem>
-              </Form>
-            </Modal>
-          )
-        }
+      <Mutation onCompleted={this.onSuccess} mutation={this.state.mutation}>
+        {(mutation, {data}) => (
+          <Modal
+            classification={classification}
+            maskClosable={false}
+            onCancel={this.props.handleCancel}
+            onOk={() => this.handleOk(mutation)}
+            handleOpen={this.handleOpen}
+            title={this.state._id ? '编辑分类' : '添加分类'}
+            visible={visible}>
+            <Form>
+              <FormItem label="分类名">
+                {getFieldDecorator('name', {
+                  rules: [
+                    {
+                      required: true,
+                      message: '分类名必须填写',
+                    },
+                  ],
+                })(<Input placeholder="分类名" />)}
+              </FormItem>
+              <FormItem label="分类简介">
+                {getFieldDecorator('description')(
+                  <Input placeholder="分类简介" />
+                )}
+              </FormItem>
+              <FormItem label="分类图标" required>
+                <ImageUpload
+                  onChange={this.handleUpload}
+                  imageName={this.state.imageName}
+                />
+              </FormItem>
+            </Form>
+          </Modal>
+        )}
       </Mutation>
-    )
+    );
   }
 }
 

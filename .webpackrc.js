@@ -3,15 +3,25 @@ const path = require('path');
 export default {
   entry: 'src/index.js',
   extraBabelPlugins: [
-    ['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }],
+    'dva-hmr',
+    ['import', {libraryName: 'antd', style: true}],
   ],
+  define: {
+    __DEV__: false,
+  },
   env: {
     development: {
-      extraBabelPlugins: ['dva-hmr'],
+      publicPath: '/',
+      disableCSSSourceMap: true,
+      devtool: 'eval',
+      ignoreMomentLocale: true,
     },
   },
   alias: {
+    Components: path.resolve(__dirname, 'src/components/'),
     components: path.resolve(__dirname, 'src/components/'),
+    Utils: path.resolve(__dirname, 'src/utils/'),
+    Assets: path.resolve(__dirname, 'src/assets/'),
   },
   ignoreMomentLocale: true,
   theme: './src/theme.js',

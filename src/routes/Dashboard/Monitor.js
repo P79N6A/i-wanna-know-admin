@@ -1,15 +1,15 @@
-import React, { PureComponent, Fragment } from 'react';
-import { connect } from 'dva';
-import { Row, Col, Card, Tooltip } from 'antd';
+import React, {PureComponent, Fragment} from 'react';
+import {connect} from 'dva';
+import {Row, Col, Card, Tooltip} from 'antd';
 import numeral from 'numeral';
-import { Pie, WaterWave, Gauge, TagCloud } from 'components/Charts';
+import {Pie, WaterWave, Gauge, TagCloud} from 'components/Charts';
 import NumberInfo from 'components/NumberInfo';
 import CountDown from 'components/CountDown';
 import ActiveChart from 'components/ActiveChart';
 import Authorized from '../../utils/Authorized';
 import styles from './Monitor.less';
 
-const { Secured } = Authorized;
+const {Secured} = Authorized;
 
 const targetTime = new Date().getTime() + 3900000;
 
@@ -18,8 +18,9 @@ const havePermissionAsync = new Promise(resolve => {
   // Call resolve on behalf of passed
   setTimeout(() => resolve(), 1000);
 });
+
 @Secured(havePermissionAsync)
-@connect(({ monitor, loading }) => ({
+@connect(({monitor, loading}) => ({
   monitor,
   loading: loading.models.monitor,
 }))
@@ -31,13 +32,19 @@ export default class Monitor extends PureComponent {
   }
 
   render() {
-    const { monitor, loading } = this.props;
-    const { tags } = monitor;
+    const {monitor, loading} = this.props;
+    const {tags} = monitor;
 
     return (
       <Fragment>
         <Row gutter={24}>
-          <Col xl={18} lg={24} md={24} sm={24} xs={24} style={{ marginBottom: 24 }}>
+          <Col
+            xl={18}
+            lg={24}
+            md={24}
+            sm={24}
+            xs={24}
+            style={{marginBottom: 24}}>
             <Card title="活动实时交易情况" bordered={false}>
               <Row>
                 <Col md={6} sm={12} xs={24}>
@@ -51,7 +58,10 @@ export default class Monitor extends PureComponent {
                   <NumberInfo subTitle="销售目标完成率" total="92%" />
                 </Col>
                 <Col md={6} sm={12} xs={24}>
-                  <NumberInfo subTitle="活动剩余时间" total={<CountDown target={targetTime} />} />
+                  <NumberInfo
+                    subTitle="活动剩余时间"
+                    total={<CountDown target={targetTime} />}
+                  />
                 </Col>
                 <Col md={6} sm={12} xs={24}>
                   <NumberInfo
@@ -72,23 +82,28 @@ export default class Monitor extends PureComponent {
             </Card>
           </Col>
           <Col xl={6} lg={24} md={24} sm={24} xs={24}>
-            <Card title="活动情况预测" style={{ marginBottom: 24 }} bordered={false}>
+            <Card
+              title="活动情况预测"
+              style={{marginBottom: 24}}
+              bordered={false}>
               <ActiveChart />
             </Card>
             <Card
               title="券核效率"
-              style={{ marginBottom: 24 }}
-              bodyStyle={{ textAlign: 'center' }}
-              bordered={false}
-            >
+              style={{marginBottom: 24}}
+              bodyStyle={{textAlign: 'center'}}
+              bordered={false}>
               <Gauge title="跳出率" height={180} percent={87} />
             </Card>
           </Col>
         </Row>
         <Row gutter={24}>
           <Col xl={12} lg={24} sm={24} xs={24}>
-            <Card title="各品类占比" bordered={false} className={styles.pieCard}>
-              <Row style={{ padding: '16px 0' }}>
+            <Card
+              title="各品类占比"
+              bordered={false}
+              className={styles.pieCard}>
+              <Row style={{padding: '16px 0'}}>
                 <Col span={8}>
                   <Pie
                     animate={false}
@@ -129,17 +144,15 @@ export default class Monitor extends PureComponent {
               title="热门搜索"
               loading={loading}
               bordered={false}
-              bodyStyle={{ overflow: 'hidden' }}
-            >
+              bodyStyle={{overflow: 'hidden'}}>
               <TagCloud data={tags} height={161} />
             </Card>
           </Col>
           <Col xl={6} lg={12} sm={24} xs={24}>
             <Card
               title="资源剩余"
-              bodyStyle={{ textAlign: 'center', fontSize: 0 }}
-              bordered={false}
-            >
+              bodyStyle={{textAlign: 'center', fontSize: 0}}
+              bordered={false}>
               <WaterWave height={161} title="补贴资金剩余" percent={34} />
             </Card>
           </Col>

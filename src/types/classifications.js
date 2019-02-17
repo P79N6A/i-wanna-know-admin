@@ -15,6 +15,13 @@ const CLASSIFICATIONS = `
   type Classification {
     _id: ID!
     name: String
+    description: String
+    icon: String
+  }
+
+  type Classifications {
+    list: [Classification]
+    total: Int!
   }
 `;
 

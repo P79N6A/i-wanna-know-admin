@@ -1,5 +1,5 @@
-import React, { PureComponent, Fragment } from 'react';
-import { connect } from 'dva';
+import React, {PureComponent, Fragment} from 'react';
+import {connect} from 'dva';
 import moment from 'moment';
 import {
   Row,
@@ -25,7 +25,7 @@ import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './TableList.less';
 
 const FormItem = Form.Item;
-const { Option } = Select;
+const {Option} = Select;
 const getValue = obj =>
   Object.keys(obj)
     .map(key => obj[key])
@@ -34,7 +34,7 @@ const statusMap = ['default', 'processing', 'success', 'error'];
 const status = ['关闭', '运行中', '已上线', '异常'];
 
 const CreateForm = Form.create()(props => {
-  const { modalVisible, form, handleAdd, handleModalVisible } = props;
+  const {modalVisible, form, handleAdd, handleModalVisible} = props;
   const okHandle = () => {
     form.validateFields((err, fieldsValue) => {
       if (err) return;
@@ -42,23 +42,26 @@ const CreateForm = Form.create()(props => {
       handleAdd(fieldsValue);
     });
   };
-  return (
+
+  
+return (
     <Modal
       title="新建规则"
       visible={modalVisible}
       onOk={okHandle}
-      onCancel={() => handleModalVisible()}
-    >
-      <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="描述">
+      onCancel={() => handleModalVisible()}>
+      <FormItem labelCol={{span: 5}} wrapperCol={{span: 15}} label="描述">
         {form.getFieldDecorator('desc', {
-          rules: [{ required: true, message: 'Please input some description...' }],
+          rules: [
+            {required: true, message: 'Please input some description...'},
+          ],
         })(<Input placeholder="请输入" />)}
       </FormItem>
     </Modal>
   );
 });
 
-@connect(({ rule, loading }) => ({
+@connect(({rule, loading}) => ({
   rule,
   loading: loading.models.rule,
 }))
@@ -72,20 +75,23 @@ export default class TableList extends PureComponent {
   };
 
   componentDidMount() {
-    const { dispatch } = this.props;
+    const {dispatch} = this.props;
+
     dispatch({
       type: 'rule/fetch',
     });
   }
 
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
-    const { dispatch } = this.props;
-    const { formValues } = this.state;
+    const {dispatch} = this.props;
+    const {formValues} = this.state;
 
     const filters = Object.keys(filtersArg).reduce((obj, key) => {
-      const newObj = { ...obj };
+      const newObj = {...obj};
+
       newObj[key] = getValue(filtersArg[key]);
-      return newObj;
+      
+return newObj;
     }, {});
 
     const params = {
@@ -94,6 +100,7 @@ export default class TableList extends PureComponent {
       ...formValues,
       ...filters,
     };
+
     if (sorter.field) {
       params.sorter = `${sorter.field}_${sorter.order}`;
     }
@@ -105,7 +112,8 @@ export default class TableList extends PureComponent {
   };
 
   handleFormReset = () => {
-    const { form, dispatch } = this.props;
+    const {form, dispatch} = this.props;
+
     form.resetFields();
     this.setState({
       formValues: {},
@@ -123,8 +131,8 @@ export default class TableList extends PureComponent {
   };
 
   handleMenuClick = e => {
-    const { dispatch } = this.props;
-    const { selectedRows } = this.state;
+    const {dispatch} = this.props;
+    const {selectedRows} = this.state;
 
     if (!selectedRows) return;
 
@@ -156,7 +164,7 @@ export default class TableList extends PureComponent {
   handleSearch = e => {
     e.preventDefault();
 
-    const { dispatch, form } = this.props;
+    const {dispatch, form} = this.props;
 
     form.validateFields((err, fieldsValue) => {
       if (err) return;
@@ -198,10 +206,12 @@ export default class TableList extends PureComponent {
   };
 
   renderSimpleForm() {
-    const { getFieldDecorator } = this.props.form;
-    return (
+    const {getFieldDecorator} = this.props.form;
+
+    
+return (
       <Form onSubmit={this.handleSearch} layout="inline">
-        <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+        <Row gutter={{md: 8, lg: 24, xl: 48}}>
           <Col md={8} sm={24}>
             <FormItem label="规则编号">
               {getFieldDecorator('no')(<Input placeholder="请输入" />)}
@@ -210,7 +220,7 @@ export default class TableList extends PureComponent {
           <Col md={8} sm={24}>
             <FormItem label="使用状态">
               {getFieldDecorator('status')(
-                <Select placeholder="请选择" style={{ width: '100%' }}>
+                <Select placeholder="请选择" style={{width: '100%'}}>
                   <Option value="0">关闭</Option>
                   <Option value="1">运行中</Option>
                 </Select>
@@ -222,10 +232,10 @@ export default class TableList extends PureComponent {
               <Button type="primary" htmlType="submit">
                 查询
               </Button>
-              <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>
+              <Button style={{marginLeft: 8}} onClick={this.handleFormReset}>
                 重置
               </Button>
-              <a style={{ marginLeft: 8 }} onClick={this.toggleForm}>
+              <a style={{marginLeft: 8}} onClick={this.toggleForm}>
                 展开 <Icon type="down" />
               </a>
             </span>
@@ -236,10 +246,12 @@ export default class TableList extends PureComponent {
   }
 
   renderAdvancedForm() {
-    const { getFieldDecorator } = this.props.form;
-    return (
+    const {getFieldDecorator} = this.props.form;
+
+    
+return (
       <Form onSubmit={this.handleSearch} layout="inline">
-        <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+        <Row gutter={{md: 8, lg: 24, xl: 48}}>
           <Col md={8} sm={24}>
             <FormItem label="规则编号">
               {getFieldDecorator('no')(<Input placeholder="请输入" />)}
@@ -248,7 +260,7 @@ export default class TableList extends PureComponent {
           <Col md={8} sm={24}>
             <FormItem label="使用状态">
               {getFieldDecorator('status')(
-                <Select placeholder="请选择" style={{ width: '100%' }}>
+                <Select placeholder="请选择" style={{width: '100%'}}>
                   <Option value="0">关闭</Option>
                   <Option value="1">运行中</Option>
                 </Select>
@@ -257,22 +269,27 @@ export default class TableList extends PureComponent {
           </Col>
           <Col md={8} sm={24}>
             <FormItem label="调用次数">
-              {getFieldDecorator('number')(<InputNumber style={{ width: '100%' }} />)}
+              {getFieldDecorator('number')(
+                <InputNumber style={{width: '100%'}} />
+              )}
             </FormItem>
           </Col>
         </Row>
-        <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+        <Row gutter={{md: 8, lg: 24, xl: 48}}>
           <Col md={8} sm={24}>
             <FormItem label="更新日期">
               {getFieldDecorator('date')(
-                <DatePicker style={{ width: '100%' }} placeholder="请输入更新日期" />
+                <DatePicker
+                  style={{width: '100%'}}
+                  placeholder="请输入更新日期"
+                />
               )}
             </FormItem>
           </Col>
           <Col md={8} sm={24}>
             <FormItem label="使用状态">
               {getFieldDecorator('status3')(
-                <Select placeholder="请选择" style={{ width: '100%' }}>
+                <Select placeholder="请选择" style={{width: '100%'}}>
                   <Option value="0">关闭</Option>
                   <Option value="1">运行中</Option>
                 </Select>
@@ -282,7 +299,7 @@ export default class TableList extends PureComponent {
           <Col md={8} sm={24}>
             <FormItem label="使用状态">
               {getFieldDecorator('status4')(
-                <Select placeholder="请选择" style={{ width: '100%' }}>
+                <Select placeholder="请选择" style={{width: '100%'}}>
                   <Option value="0">关闭</Option>
                   <Option value="1">运行中</Option>
                 </Select>
@@ -290,15 +307,15 @@ export default class TableList extends PureComponent {
             </FormItem>
           </Col>
         </Row>
-        <div style={{ overflow: 'hidden' }}>
-          <span style={{ float: 'right', marginBottom: 24 }}>
+        <div style={{overflow: 'hidden'}}>
+          <span style={{float: 'right', marginBottom: 24}}>
             <Button type="primary" htmlType="submit">
               查询
             </Button>
-            <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>
+            <Button style={{marginLeft: 8}} onClick={this.handleFormReset}>
               重置
             </Button>
-            <a style={{ marginLeft: 8 }} onClick={this.toggleForm}>
+            <a style={{marginLeft: 8}} onClick={this.toggleForm}>
               收起 <Icon type="up" />
             </a>
           </span>
@@ -308,12 +325,14 @@ export default class TableList extends PureComponent {
   }
 
   renderForm() {
-    return this.state.expandForm ? this.renderAdvancedForm() : this.renderSimpleForm();
+    return this.state.expandForm
+      ? this.renderAdvancedForm()
+      : this.renderSimpleForm();
   }
 
   render() {
-    const { rule: { data }, loading } = this.props;
-    const { selectedRows, modalVisible } = this.state;
+    const {rule: {data}, loading} = this.props;
+    const {selectedRows, modalVisible} = this.state;
 
     const columns = [
       {
@@ -395,7 +414,10 @@ export default class TableList extends PureComponent {
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>{this.renderForm()}</div>
             <div className={styles.tableListOperator}>
-              <Button icon="plus" type="primary" onClick={() => this.handleModalVisible(true)}>
+              <Button
+                icon="plus"
+                type="primary"
+                onClick={() => this.handleModalVisible(true)}>
                 新建
               </Button>
               {selectedRows.length > 0 && (

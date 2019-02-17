@@ -1,21 +1,35 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import numeral from 'numeral';
-import { connect } from 'dva';
-import { Row, Col, Form, Card, Select, Icon, Avatar, List, Tooltip, Dropdown, Menu } from 'antd';
+import {connect} from 'dva';
+import {
+  Row,
+  Col,
+  Form,
+  Card,
+  Select,
+  Icon,
+  Avatar,
+  List,
+  Tooltip,
+  Dropdown,
+  Menu,
+} from 'antd';
 
 import TagSelect from 'components/TagSelect';
 import StandardFormRow from 'components/StandardFormRow';
 
 import styles from './Applications.less';
 
-const { Option } = Select;
+const {Option} = Select;
 const FormItem = Form.Item;
 
 const formatWan = val => {
   const v = val * 1;
+
   if (!v || isNaN(v)) return '';
 
   let result = val;
+
   if (val > 10000) {
     result = Math.floor(val / 10000);
     result = (
@@ -25,12 +39,13 @@ const formatWan = val => {
       </span>
     );
   }
-  return result;
+  
+return result;
 };
 
 /* eslint react/no-array-index-key: 0 */
 @Form.create()
-@connect(({ list, loading }) => ({
+@connect(({list, loading}) => ({
   list,
   loading: loading.models.list,
 }))
@@ -45,8 +60,9 @@ export default class FilterCardList extends PureComponent {
   }
 
   handleFormSubmit = () => {
-    const { form, dispatch } = this.props;
+    const {form, dispatch} = this.props;
     // setTimeout 用于保证获取表单值是在所有表单字段更新完毕的时候
+
     setTimeout(() => {
       form.validateFields(err => {
         if (!err) {
@@ -63,10 +79,10 @@ export default class FilterCardList extends PureComponent {
   };
 
   render() {
-    const { list: { list }, loading, form } = this.props;
-    const { getFieldDecorator } = form;
+    const {list: {list}, loading, form} = this.props;
+    const {getFieldDecorator} = form;
 
-    const CardInfo = ({ activeUser, newUser }) => (
+    const CardInfo = ({activeUser, newUser}) => (
       <div className={styles.cardInfo}>
         <div>
           <p>活跃用户</p>
@@ -81,25 +97,34 @@ export default class FilterCardList extends PureComponent {
 
     const formItemLayout = {
       wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 },
+        xs: {span: 24},
+        sm: {span: 16},
       },
     };
 
     const itemMenu = (
       <Menu>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="http://www.alipay.com/">
             1st menu item
           </a>
         </Menu.Item>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="http://www.taobao.com/">
             2nd menu item
           </a>
         </Menu.Item>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="http://www.tmall.com/">
             3d menu item
           </a>
         </Menu.Item>
@@ -110,7 +135,7 @@ export default class FilterCardList extends PureComponent {
       <div className={styles.filterCardList}>
         <Card bordered={false}>
           <Form layout="inline">
-            <StandardFormRow title="所属类目" block style={{ paddingBottom: 11 }}>
+            <StandardFormRow title="所属类目" block style={{paddingBottom: 11}}>
               <FormItem>
                 {getFieldDecorator('category')(
                   <TagSelect onChange={this.handleFormSubmit} expandable>
@@ -138,8 +163,7 @@ export default class FilterCardList extends PureComponent {
                       <Select
                         onChange={this.handleFormSubmit}
                         placeholder="不限"
-                        style={{ maxWidth: 200, width: '100%' }}
-                      >
+                        style={{maxWidth: 200, width: '100%'}}>
                         <Option value="lisa">王昭君</Option>
                       </Select>
                     )}
@@ -151,8 +175,7 @@ export default class FilterCardList extends PureComponent {
                       <Select
                         onChange={this.handleFormSubmit}
                         placeholder="不限"
-                        style={{ maxWidth: 200, width: '100%' }}
-                      >
+                        style={{maxWidth: 200, width: '100%'}}>
                         <Option value="good">优秀</Option>
                         <Option value="normal">普通</Option>
                       </Select>
@@ -165,15 +188,15 @@ export default class FilterCardList extends PureComponent {
         </Card>
         <List
           rowKey="id"
-          style={{ marginTop: 24 }}
-          grid={{ gutter: 24, xl: 4, lg: 3, md: 3, sm: 2, xs: 1 }}
+          style={{marginTop: 24}}
+          grid={{gutter: 24, xl: 4, lg: 3, md: 3, sm: 2, xs: 1}}
           loading={loading}
           dataSource={list}
           renderItem={item => (
             <List.Item key={item.id}>
               <Card
                 hoverable
-                bodyStyle={{ paddingBottom: 20 }}
+                bodyStyle={{paddingBottom: 20}}
                 actions={[
                   <Tooltip title="下载">
                     <Icon type="download" />
@@ -187,9 +210,11 @@ export default class FilterCardList extends PureComponent {
                   <Dropdown overlay={itemMenu}>
                     <Icon type="ellipsis" />
                   </Dropdown>,
-                ]}
-              >
-                <Card.Meta avatar={<Avatar size="small" src={item.avatar} />} title={item.title} />
+                ]}>
+                <Card.Meta
+                  avatar={<Avatar size="small" src={item.avatar} />}
+                  title={item.title}
+                />
                 <div className={styles.cardItemContent}>
                   <CardInfo
                     activeUser={formatWan(item.activeUser)}

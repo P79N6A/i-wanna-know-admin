@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 function fixedZero(val) {
   return val * 1 < 10 ? `0${val}` : val;
@@ -8,7 +8,7 @@ class CountDown extends Component {
   constructor(props) {
     super(props);
 
-    const { lastTime } = this.initTime(props);
+    const {lastTime} = this.initTime(props);
 
     this.state = {
       lastTime,
@@ -22,7 +22,8 @@ class CountDown extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.target !== nextProps.target) {
       clearTimeout(this.timer);
-      const { lastTime } = this.initTime(nextProps);
+      const {lastTime} = this.initTime(nextProps);
+
       this.setState(
         {
           lastTime,
@@ -43,6 +44,7 @@ class CountDown extends Component {
   initTime = props => {
     let lastTime = 0;
     let targetTime = 0;
+
     try {
       if (Object.prototype.toString.call(props.target) === '[object Date]') {
         targetTime = props.target.getTime();
@@ -54,7 +56,8 @@ class CountDown extends Component {
     }
 
     lastTime = targetTime - new Date().getTime();
-    return {
+    
+return {
       lastTime: lastTime < 0 ? 0 : lastTime,
     };
   };
@@ -68,15 +71,17 @@ class CountDown extends Component {
     const h = Math.floor(time / hours);
     const m = Math.floor((time - h * hours) / minutes);
     const s = Math.floor((time - h * hours - m * minutes) / 1000);
-    return (
+
+    
+return (
       <span>
         {fixedZero(h)}:{fixedZero(m)}:{fixedZero(s)}
       </span>
     );
   };
   tick = () => {
-    const { onEnd } = this.props;
-    let { lastTime } = this.state;
+    const {onEnd} = this.props;
+    let {lastTime} = this.state;
 
     this.timer = setTimeout(() => {
       if (lastTime < this.interval) {
@@ -106,8 +111,8 @@ class CountDown extends Component {
   };
 
   render() {
-    const { format = this.defaultFormat, onEnd, ...rest } = this.props;
-    const { lastTime } = this.state;
+    const {format = this.defaultFormat, onEnd, ...rest} = this.props;
+    const {lastTime} = this.state;
     const result = format(lastTime);
 
     return <span {...rest}>{result}</span>;

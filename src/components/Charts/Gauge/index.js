@@ -1,8 +1,8 @@
 import React from 'react';
-import { Chart, Geom, Axis, Coord, Guide, Shape } from 'bizcharts';
+import {Chart, Geom, Axis, Coord, Guide, Shape} from 'bizcharts';
 import autoHeight from '../autoHeight';
 
-const { Arc, Html, Line } = Guide;
+const {Arc, Html, Line} = Guide;
 
 const defaultFormatter = val => {
   switch (val) {
@@ -22,11 +22,13 @@ const defaultFormatter = val => {
 Shape.registerShape('point', 'pointer', {
   drawShape(cfg, group) {
     let point = cfg.points[0];
+
     point = this.parsePoint(point);
     const center = this.parsePoint({
       x: 0,
       y: 0,
     });
+
     group.addShape('line', {
       attrs: {
         x1: center.x,
@@ -38,7 +40,8 @@ Shape.registerShape('point', 'pointer', {
         lineCap: 'round',
       },
     });
-    return group.addShape('circle', {
+    
+return group.addShape('circle', {
       attrs: {
         x: center.x,
         y: center.y,
@@ -72,10 +75,22 @@ export default class Gauge extends React.Component {
         nice: true,
       },
     };
-    const data = [{ value: percent / 10 }];
-    return (
-      <Chart height={height} data={data} scale={cols} padding={[-16, 0, 16, 0]} forceFit={forceFit}>
-        <Coord type="polar" startAngle={-1.25 * Math.PI} endAngle={0.25 * Math.PI} radius={0.8} />
+    const data = [{value: percent / 10}];
+
+    
+return (
+      <Chart
+        height={height}
+        data={data}
+        scale={cols}
+        padding={[-16, 0, 16, 0]}
+        forceFit={forceFit}>
+        <Coord
+          type="polar"
+          startAngle={-1.25 * Math.PI}
+          endAngle={0.25 * Math.PI}
+          radius={0.8}
+        />
         <Axis name="1" line={null} />
         <Axis
           line={null}

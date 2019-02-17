@@ -1,21 +1,23 @@
-import React, { PureComponent, Fragment } from 'react';
-import { Table, Alert } from 'antd';
+import React, {PureComponent, Fragment} from 'react';
+import {Table, Alert} from 'antd';
 import styles from './index.less';
 
 function initTotalList(columns) {
   const totalList = [];
+
   columns.forEach(column => {
     if (column.needTotal) {
-      totalList.push({ ...column, total: 0 });
+      totalList.push({...column, total: 0});
     }
   });
-  return totalList;
+  
+return totalList;
 }
 
 class StandardTable extends PureComponent {
   constructor(props) {
     super(props);
-    const { columns } = props;
+    const {columns} = props;
     const needTotalList = initTotalList(columns);
 
     this.state = {
@@ -28,6 +30,7 @@ class StandardTable extends PureComponent {
     // clean state
     if (nextProps.selectedRows.length === 0) {
       const needTotalList = initTotalList(nextProps.columns);
+
       this.setState({
         selectedRowKeys: [],
         needTotalList,
@@ -37,6 +40,7 @@ class StandardTable extends PureComponent {
 
   handleRowSelectChange = (selectedRowKeys, selectedRows) => {
     let needTotalList = [...this.state.needTotalList];
+
     needTotalList = needTotalList.map(item => {
       return {
         ...item,
@@ -50,7 +54,7 @@ class StandardTable extends PureComponent {
       this.props.onSelectRow(selectedRows);
     }
 
-    this.setState({ selectedRowKeys, needTotalList });
+    this.setState({selectedRowKeys, needTotalList});
   };
 
   handleTableChange = (pagination, filters, sorter) => {
@@ -62,8 +66,8 @@ class StandardTable extends PureComponent {
   };
 
   render() {
-    const { selectedRowKeys, needTotalList } = this.state;
-    const { data: { list, pagination }, loading, columns, rowKey } = this.props;
+    const {selectedRowKeys, needTotalList} = this.state;
+    const {data: {list, pagination}, loading, columns, rowKey} = this.props;
 
     const paginationProps = {
       showSizeChanger: true,
@@ -85,16 +89,17 @@ class StandardTable extends PureComponent {
           <Alert
             message={
               <Fragment>
-                已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项&nbsp;&nbsp;
+                已选择 <a style={{fontWeight: 600}}>{selectedRowKeys.length}</a>{' '}
+                项&nbsp;&nbsp;
                 {needTotalList.map(item => (
-                  <span style={{ marginLeft: 8 }} key={item.dataIndex}>
+                  <span style={{marginLeft: 8}} key={item.dataIndex}>
                     {item.title}总计&nbsp;
-                    <span style={{ fontWeight: 600 }}>
+                    <span style={{fontWeight: 600}}>
                       {item.render ? item.render(item.total) : item.total}
                     </span>
                   </span>
                 ))}
-                <a onClick={this.cleanSelectedKeys} style={{ marginLeft: 24 }}>
+                <a onClick={this.cleanSelectedKeys} style={{marginLeft: 24}}>
                   清空
                 </a>
               </Fragment>

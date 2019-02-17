@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Icon } from 'antd';
+import {Icon} from 'antd';
 import styles from './index.less';
 
 export default function Result({
@@ -17,7 +17,9 @@ export default function Result({
     success: <Icon className={styles.success} type="check-circle" />,
   };
   const clsString = classNames(styles.result, className);
-  return (
+
+  
+return (
     <div className={clsString} {...restProps}>
       <div className={styles.icon}>{iconMap[type]}</div>
       <div className={styles.title}>{title}</div>

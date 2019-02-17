@@ -63,6 +63,7 @@ const user = [
 
 export function fakeList(count) {
   const list = [];
+
   for (let i = 0; i < count; i += 1) {
     list.push({
       id: `fake-list-${i}`,
@@ -108,6 +109,7 @@ export function fakeList(count) {
 
 export function getFakeList(req, res, u) {
   let url = u;
+
   if (!url || Object.prototype.toString.call(url) !== '[object String]') {
     url = req.url; // eslint-disable-line
   }

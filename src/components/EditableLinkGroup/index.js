@@ -1,6 +1,6 @@
-import React, { PureComponent, createElement } from 'react';
+import React, {PureComponent, createElement} from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'antd';
+import {Button} from 'antd';
 import styles from './index.less';
 
 // TODO: 添加逻辑
@@ -19,8 +19,10 @@ class EditableLinkGroup extends PureComponent {
   };
 
   render() {
-    const { links, linkElement, onAdd } = this.props;
-    return (
+    const {links, linkElement, onAdd} = this.props;
+
+    
+return (
       <div className={styles.linkGroup}>
         {links.map(link =>
           createElement(

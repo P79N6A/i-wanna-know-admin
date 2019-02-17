@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chart, Axis, Tooltip, Geom } from 'bizcharts';
+import {Chart, Axis, Tooltip, Geom} from 'bizcharts';
 import autoHeight from '../autoHeight';
 import styles from '../index.less';
 
@@ -45,7 +45,7 @@ export default class MiniArea extends React.Component {
     const chartHeight = height + 54;
 
     return (
-      <div className={styles.miniChart} style={{ height }}>
+      <div className={styles.miniChart} style={{height}}>
         <div className={styles.chartContent}>
           {height > 0 && (
             <Chart
@@ -54,8 +54,7 @@ export default class MiniArea extends React.Component {
               height={chartHeight}
               forceFit={forceFit}
               data={data}
-              padding={padding}
-            >
+              padding={padding}>
               <Axis
                 key="axis-x"
                 name="x"
@@ -95,7 +94,7 @@ export default class MiniArea extends React.Component {
                   tooltip={false}
                 />
               ) : (
-                <span style={{ display: 'none' }} />
+                <span style={{display: 'none'}} />
               )}
             </Chart>
           )}

@@ -1,13 +1,13 @@
-import React, { Fragment } from 'react';
-import { connect } from 'dva';
-import { Button, Row, Col } from 'antd';
-import { routerRedux } from 'dva/router';
+import React, {Fragment} from 'react';
+import {connect} from 'dva';
+import {Button, Row, Col} from 'antd';
+import {routerRedux} from 'dva/router';
 import Result from 'components/Result';
 import styles from './style.less';
 
 class Step3 extends React.PureComponent {
   render() {
-    const { dispatch, data } = this.props;
+    const {dispatch, data} = this.props;
     const onFinish = () => {
       dispatch(routerRedux.push('/form/step-form'));
     };
@@ -55,7 +55,9 @@ class Step3 extends React.PureComponent {
         <Button>查看账单</Button>
       </Fragment>
     );
-    return (
+
+    
+return (
       <Result
         type="success"
         title="操作成功"
@@ -68,6 +70,6 @@ class Step3 extends React.PureComponent {
   }
 }
 
-export default connect(({ form }) => ({
+export default connect(({form}) => ({
   data: form.step,
 }))(Step3);

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Chart, Tooltip, Geom, Coord } from 'bizcharts';
-import { DataView } from '@antv/data-set';
-import { Divider } from 'antd';
+import React, {Component} from 'react';
+import {Chart, Tooltip, Geom, Coord} from 'bizcharts';
+import {DataView} from '@antv/data-set';
+import {Divider} from 'antd';
 import classNames from 'classnames';
 import ReactFitText from 'react-fittext';
 import Debounce from 'lodash-decorators/debounce';
@@ -57,9 +57,11 @@ export default class Pie extends Component {
     const legendData = items.map(item => {
       /* eslint no-underscore-dangle:0 */
       const origin = item[0]._origin;
+
       origin.color = item[0].color;
       origin.checked = true;
-      return origin;
+      
+return origin;
     });
 
     this.setState({
@@ -71,10 +73,12 @@ export default class Pie extends Component {
   @Bind()
   @Debounce(300)
   resize() {
-    const { hasLegend } = this.props;
+    const {hasLegend} = this.props;
+
     if (!hasLegend || !this.root) {
       window.removeEventListener('resize', this.resize);
-      return;
+      
+return;
     }
     if (this.root.parentNode.clientWidth <= 380) {
       if (!this.state.legendBlock) {
@@ -95,9 +99,11 @@ export default class Pie extends Component {
 
   handleLegendClick = (item, i) => {
     const newItem = item;
+
     newItem.checked = !newItem.checked;
 
-    const { legendData } = this.state;
+    const {legendData} = this.state;
+
     legendData[i] = newItem;
 
     const filteredLegendData = legendData.filter(l => l.checked).map(l => l.x);
@@ -129,7 +135,7 @@ export default class Pie extends Component {
       lineWidth = 1,
     } = this.props;
 
-    const { legendData, legendBlock } = this.state;
+    const {legendData, legendBlock} = this.state;
     const pieClassName = classNames(styles.pie, className, {
       [styles.hasLegend]: !!hasLegend,
       [styles.legendBlock]: legendBlock,
@@ -185,6 +191,7 @@ export default class Pie extends Component {
     const padding = [12, 0, 12, 0];
 
     const dv = new DataView();
+
     dv.source(data).transform({
       type: 'percent',
       field: 'y',
@@ -203,12 +210,11 @@ export default class Pie extends Component {
               data={dv}
               padding={padding}
               animate={animate}
-              onGetG2Instance={this.getG2Instance}
-            >
+              onGetG2Instance={this.getG2Instance}>
               {!!tooltip && <Tooltip showTitle={false} />}
               <Coord type="theta" innerRadius={inner} />
               <Geom
-                style={{ lineWidth, stroke: '#fff' }}
+                style={{lineWidth, stroke: '#fff'}}
                 tooltip={tooltip && tooltipFormat}
                 type="intervalStack"
                 position="percent"
@@ -222,7 +228,9 @@ export default class Pie extends Component {
                 {subTitle && <h4 className="pie-sub-title">{subTitle}</h4>}
                 {/* eslint-disable-next-line */}
                 {total && (
-                  <div className="pie-stat">{typeof total === 'function' ? total() : total}</div>
+                  <div className="pie-stat">
+                    {typeof total === 'function' ? total() : total}
+                  </div>
                 )}
               </div>
             )}
@@ -242,9 +250,13 @@ export default class Pie extends Component {
                 <span className={styles.legendTitle}>{item.x}</span>
                 <Divider type="vertical" />
                 <span className={styles.percent}>
-                  {`${(isNaN(item.percent) ? 0 : item.percent * 100).toFixed(2)}%`}
+                  {`${(isNaN(item.percent) ? 0 : item.percent * 100).toFixed(
+                    2
+                  )}%`}
                 </span>
-                <span className={styles.value}>{valueFormat ? valueFormat(item.y) : item.y}</span>
+                <span className={styles.value}>
+                  {valueFormat ? valueFormat(item.y) : item.y}
+                </span>
               </li>
             ))}
           </ul>

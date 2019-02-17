@@ -7,8 +7,8 @@ export interface IPageHeaderProps {
   extraContent?: React.ReactNode;
   routes?: any[];
   params?: any;
-  breadcrumbList?: Array<{ title: React.ReactNode; href?: string }>;
-  tabList?: Array<{ key: string; tab: React.ReactNode }>;
+  breadcrumbList?: Array<{title: React.ReactNode; href?: string}>;
+  tabList?: Array<{key: string; tab: React.ReactNode}>;
   tabActiveKey?: string;
   tabDefaultActiveKey?: string;
   onTabChange?: (key: string) => void;
@@ -17,4 +17,7 @@ export interface IPageHeaderProps {
   style?: React.CSSProperties;
 }
 
-export default class PageHeader extends React.Component<IPageHeaderProps, any> {}
+export default class PageHeader extends React.Component<
+  IPageHeaderProps,
+  any
+> {}

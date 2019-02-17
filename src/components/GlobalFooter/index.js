@@ -2,14 +2,19 @@ import React from 'react';
 import classNames from 'classnames';
 import styles from './index.less';
 
-const GlobalFooter = ({ className, links, copyright }) => {
+const GlobalFooter = ({className, links, copyright}) => {
   const clsString = classNames(styles.globalFooter, className);
-  return (
+
+  
+return (
     <div className={clsString}>
       {links && (
         <div className={styles.links}>
           {links.map(link => (
-            <a key={link.key} target={link.blankTarget ? '_blank' : '_self'} href={link.href}>
+            <a
+              key={link.key}
+              target={link.blankTarget ? '_blank' : '_self'}
+              href={link.href}>
               {link.title}
             </a>
           ))}

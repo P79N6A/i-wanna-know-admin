@@ -7,4 +7,7 @@ export interface IMiniProgressProps {
   style?: React.CSSProperties;
 }
 
-export default class MiniProgress extends React.Component<IMiniProgressProps, any> {}
+export default class MiniProgress extends React.Component<
+  IMiniProgressProps,
+  any
+> {}

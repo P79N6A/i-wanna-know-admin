@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
-import { Menu, Icon, Spin, Tag, Dropdown, Avatar, Divider, Tooltip } from 'antd';
+import React, {PureComponent} from 'react';
+import {Menu, Icon, Spin, Tag, Dropdown, Avatar, Divider, Tooltip} from 'antd';
 import moment from 'moment';
 import groupBy from 'lodash/groupBy';
 import Debounce from 'lodash-decorators/debounce';
-import { Link } from 'dva/router';
+import {Link} from 'dva/router';
 import NoticeIcon from '../NoticeIcon';
 import HeaderSearch from '../HeaderSearch';
 import styles from './index.less';
@@ -13,12 +13,14 @@ export default class GlobalHeader extends PureComponent {
     this.triggerResizeEvent.cancel();
   }
   getNoticeData() {
-    const { notices = [] } = this.props;
+    const {notices = []} = this.props;
+
     if (notices.length === 0) {
       return {};
     }
     const newNotices = notices.map(notice => {
-      const newNotice = { ...notice };
+      const newNotice = {...notice};
+
       if (newNotice.datetime) {
         newNotice.datetime = moment(notice.datetime).fromNow();
       }
@@ -33,18 +35,23 @@ export default class GlobalHeader extends PureComponent {
           urgent: 'red',
           doing: 'gold',
         }[newNotice.status];
+
         newNotice.extra = (
-          <Tag color={color} style={{ marginRight: 0 }}>
+          <Tag color={color} style={{marginRight: 0}}>
             {newNotice.extra}
           </Tag>
         );
       }
-      return newNotice;
+      
+return newNotice;
     });
-    return groupBy(newNotices, 'type');
+
+    
+return groupBy(newNotices, 'type');
   }
   toggle = () => {
-    const { collapsed, onCollapse } = this.props;
+    const {collapsed, onCollapse} = this.props;
+
     onCollapse(!collapsed);
     this.triggerResizeEvent();
   };
@@ -114,8 +121,7 @@ export default class GlobalHeader extends PureComponent {
               target="_blank"
               href="http://pro.ant.design/docs/getting-started"
               rel="noopener noreferrer"
-              className={styles.action}
-            >
+              className={styles.action}>
               <Icon type="question-circle-o" />
             </a>
           </Tooltip>
@@ -128,8 +134,7 @@ export default class GlobalHeader extends PureComponent {
             onClear={onNoticeClear}
             onPopupVisibleChange={onNoticeVisibleChange}
             loading={fetchingNotices}
-            popupAlign={{ offset: [20, -16] }}
-          >
+            popupAlign={{offset: [20, -16]}}>
             <NoticeIcon.Tab
               list={noticeData['通知']}
               title="通知"
@@ -152,12 +157,16 @@ export default class GlobalHeader extends PureComponent {
           {currentUser.name ? (
             <Dropdown overlay={menu}>
               <span className={`${styles.action} ${styles.account}`}>
-                <Avatar size="small" className={styles.avatar} src={currentUser.avatar} />
+                <Avatar
+                  size="small"
+                  className={styles.avatar}
+                  src={currentUser.avatar}
+                />
                 <span className={styles.name}>{currentUser.name}</span>
               </span>
             </Dropdown>
           ) : (
-            <Spin size="small" style={{ marginLeft: 8 }} />
+            <Spin size="small" style={{marginLeft: 8}} />
           )}
         </div>
       </div>

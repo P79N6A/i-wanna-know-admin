@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Chart, Tooltip, Geom, Coord, Axis } from 'bizcharts';
-import { Row, Col } from 'antd';
+import React, {Component} from 'react';
+import {Chart, Tooltip, Geom, Coord, Axis} from 'bizcharts';
+import {Row, Col} from 'antd';
 import autoHeight from '../autoHeight';
 import styles from './index.less';
 
@@ -55,12 +55,16 @@ export default class Radar extends Component {
 
   handleLegendClick = (item, i) => {
     const newItem = item;
+
     newItem.checked = !newItem.checked;
 
-    const { legendData } = this.state;
+    const {legendData} = this.state;
+
     legendData[i] = newItem;
 
-    const filteredLegendData = legendData.filter(l => l.checked).map(l => l.name);
+    const filteredLegendData = legendData
+      .filter(l => l.checked)
+      .map(l => l.name);
 
     if (this.chart) {
       this.chart.filter('name', val => filteredLegendData.indexOf(val) > -1);
@@ -96,7 +100,7 @@ export default class Radar extends Component {
       colors = defaultColors,
     } = this.props;
 
-    const { legendData } = this.state;
+    const {legendData} = this.state;
 
     const scale = {
       value: {
@@ -108,7 +112,7 @@ export default class Radar extends Component {
     const chartHeight = height - (hasLegend ? 80 : 22);
 
     return (
-      <div className={styles.radar} style={{ height }}>
+      <div className={styles.radar} style={{height}}>
         {title && <h4>{title}</h4>}
         <Chart
           scale={scale}
@@ -117,8 +121,7 @@ export default class Radar extends Component {
           data={data}
           padding={padding}
           animate={animate}
-          onGetG2Instance={this.getG2Instance}
-        >
+          onGetG2Instance={this.getG2Instance}>
           <Tooltip />
           <Coord type="polar" />
           <Axis
@@ -141,7 +144,12 @@ export default class Radar extends Component {
               },
             }}
           />
-          <Geom type="line" position="label*value" color={['name', colors]} size={1} />
+          <Geom
+            type="line"
+            position="label*value"
+            color={['name', colors]}
+            size={1}
+          />
           <Geom
             type="point"
             position="label*value"
@@ -156,8 +164,7 @@ export default class Radar extends Component {
               <Col
                 span={24 / legendData.length}
                 key={item.name}
-                onClick={() => this.handleLegendClick(item, i)}
-              >
+                onClick={() => this.handleLegendClick(item, i)}>
                 <div className={styles.legendItem}>
                   <p>
                     <span

@@ -1,4 +1,4 @@
-import { queryNotices } from '../services/api';
+import {queryNotices} from '../services/api';
 
 export default {
   namespace: 'global',
@@ -9,8 +9,9 @@ export default {
   },
 
   effects: {
-    *fetchNotices(_, { call, put }) {
+    *fetchNotices(_, {call, put}) {
       const data = yield call(queryNotices);
+
       yield put({
         type: 'saveNotices',
         payload: data,
@@ -20,12 +21,13 @@ export default {
         payload: data.length,
       });
     },
-    *clearNotices({ payload }, { put, select }) {
+    *clearNotices({payload}, {put, select}) {
       yield put({
         type: 'saveClearedNotices',
         payload,
       });
       const count = yield select(state => state.global.notices.length);
+
       yield put({
         type: 'user/changeNotifyCount',
         payload: count,
@@ -34,19 +36,19 @@ export default {
   },
 
   reducers: {
-    changeLayoutCollapsed(state, { payload }) {
+    changeLayoutCollapsed(state, {payload}) {
       return {
         ...state,
         collapsed: payload,
       };
     },
-    saveNotices(state, { payload }) {
+    saveNotices(state, {payload}) {
       return {
         ...state,
         notices: payload,
       };
     },
-    saveClearedNotices(state, { payload }) {
+    saveClearedNotices(state, {payload}) {
       return {
         ...state,
         notices: state.notices.filter(item => item.type !== payload),
@@ -55,9 +57,9 @@ export default {
   },
 
   subscriptions: {
-    setup({ history }) {
+    setup({history}) {
       // Subscribe history(url) change, trigger `load` action if pathname is `/`
-      return history.listen(({ pathname, search }) => {
+      return history.listen(({pathname, search}) => {
         if (typeof window.ga !== 'undefined') {
           window.ga('send', 'pageview', pathname + search);
         }

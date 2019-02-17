@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import autoHeight from '../autoHeight';
 import styles from './index.less';
 
@@ -28,15 +28,16 @@ export default class WaterWave extends PureComponent {
   }
 
   resize = () => {
-    const { height } = this.props;
-    const { offsetWidth } = this.root.parentNode;
+    const {height} = this.props;
+    const {offsetWidth} = this.root.parentNode;
+
     this.setState({
       radio: offsetWidth < height ? offsetWidth / height : 1,
     });
   };
 
   renderChart() {
-    const { percent, color = '#1890FF' } = this.props;
+    const {percent, color = '#1890FF'} = this.props;
     const data = percent / 100;
     const self = this;
 
@@ -70,11 +71,16 @@ export default class WaterWave extends PureComponent {
     const circleOffset = -(Math.PI / 2);
     let circleLock = true;
 
-    for (let i = circleOffset; i < circleOffset + 2 * Math.PI; i += 1 / (8 * Math.PI)) {
+    for (
+      let i = circleOffset;
+      i < circleOffset + 2 * Math.PI;
+      i += 1 / (8 * Math.PI)
+    ) {
       arcStack.push([radius + bR * Math.cos(i), radius + bR * Math.sin(i)]);
     }
 
     const cStartPoint = arcStack.shift();
+
     ctx.strokeStyle = color;
     ctx.moveTo(cStartPoint[0], cStartPoint[1]);
 
@@ -83,6 +89,7 @@ export default class WaterWave extends PureComponent {
       ctx.save();
 
       const sinStack = [];
+
       for (let i = xOffset; i <= xOffset + axisLength; i += 20 / axisLength) {
         const x = sp + (xOffset + i) / unit;
         const y = Math.sin(x) * currRange;
@@ -100,6 +107,7 @@ export default class WaterWave extends PureComponent {
       ctx.lineTo(startPoint[0], startPoint[1]);
 
       const gradient = ctx.createLinearGradient(0, 0, 0, canvasHeight);
+
       gradient.addColorStop(0, '#ffffff');
       gradient.addColorStop(1, '#1890FF');
       ctx.fillStyle = gradient;
@@ -112,6 +120,7 @@ export default class WaterWave extends PureComponent {
       if (circleLock) {
         if (arcStack.length) {
           const temp = arcStack.shift();
+
           ctx.lineTo(temp[0], temp[1]);
           ctx.stroke();
         } else {
@@ -137,20 +146,24 @@ export default class WaterWave extends PureComponent {
         if (data >= 0.85) {
           if (currRange > range / 4) {
             const t = range * 0.01;
+
             currRange -= t;
           }
         } else if (data <= 0.1) {
           if (currRange < range * 1.5) {
             const t = range * 0.01;
+
             currRange += t;
           }
         } else {
           if (currRange <= range) {
             const t = range * 0.01;
+
             currRange += t;
           }
           if (currRange >= range) {
             const t = range * 0.01;
+
             currRange -= t;
           }
         }
@@ -171,15 +184,16 @@ export default class WaterWave extends PureComponent {
   }
 
   render() {
-    const { radio } = this.state;
-    const { percent, title, height } = this.props;
-    return (
+    const {radio} = this.state;
+    const {percent, title, height} = this.props;
+
+    
+return (
       <div
         className={styles.waterWave}
         ref={n => (this.root = n)}
-        style={{ transform: `scale(${radio})` }}
-      >
-        <div style={{ width: height, height, overflow: 'hidden' }}>
+        style={{transform: `scale(${radio})`}}>
+        <div style={{width: height, height, overflow: 'hidden'}}>
           <canvas
             className={styles.waterWaveCanvasWrapper}
             ref={n => (this.node = n)}
@@ -187,7 +201,7 @@ export default class WaterWave extends PureComponent {
             height={height * 2}
           />
         </div>
-        <div className={styles.text} style={{ width: height }}>
+        <div className={styles.text} style={{width: height}}>
           {title && <span>{title}</span>}
           <h4>{percent}%</h4>
         </div>

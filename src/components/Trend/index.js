@@ -1,9 +1,16 @@
 import React from 'react';
-import { Icon } from 'antd';
+import {Icon} from 'antd';
 import classNames from 'classnames';
 import styles from './index.less';
 
-const Trend = ({ colorful = true, reverseColor = false, flag, children, className, ...rest }) => {
+const Trend = ({
+  colorful = true,
+  reverseColor = false,
+  flag,
+  children,
+  className,
+  ...rest
+}) => {
   const classString = classNames(
     styles.trendItem,
     {
@@ -12,8 +19,13 @@ const Trend = ({ colorful = true, reverseColor = false, flag, children, classNam
     },
     className
   );
-  return (
-    <div {...rest} className={classString} title={typeof children === 'string' ? children : ''}>
+
+  
+return (
+    <div
+      {...rest}
+      className={classString}
+      title={typeof children === 'string' ? children : ''}>
       <span className={styles.value}>{children}</span>
       {flag && (
         <span className={styles[flag]}>

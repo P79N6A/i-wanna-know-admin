@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import moment from 'moment';
-import { connect } from 'dva';
+import {connect} from 'dva';
 import {
   List,
   Card,
@@ -22,9 +22,9 @@ import styles from './BasicList.less';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
-const { Search } = Input;
+const {Search} = Input;
 
-@connect(({ list, loading }) => ({
+@connect(({list, loading}) => ({
   list,
   loading: loading.models.list,
 }))
@@ -39,9 +39,9 @@ export default class BasicList extends PureComponent {
   }
 
   render() {
-    const { list: { list }, loading } = this.props;
+    const {list: {list}, loading} = this.props;
 
-    const Info = ({ title, value, bordered }) => (
+    const Info = ({title, value, bordered}) => (
       <div className={styles.headerInfo}>
         <span>{title}</span>
         <p>{value}</p>
@@ -56,7 +56,11 @@ export default class BasicList extends PureComponent {
           <RadioButton value="progress">进行中</RadioButton>
           <RadioButton value="waiting">等待中</RadioButton>
         </RadioGroup>
-        <Search className={styles.extraContentSearch} placeholder="请输入" onSearch={() => ({})} />
+        <Search
+          className={styles.extraContentSearch}
+          placeholder="请输入"
+          onSearch={() => ({})}
+        />
       </div>
     );
 
@@ -67,7 +71,7 @@ export default class BasicList extends PureComponent {
       total: 50,
     };
 
-    const ListContent = ({ data: { owner, createdAt, percent, status } }) => (
+    const ListContent = ({data: {owner, createdAt, percent, status}}) => (
       <div className={styles.listContent}>
         <div className={styles.listContentItem}>
           <span>Owner</span>
@@ -78,7 +82,12 @@ export default class BasicList extends PureComponent {
           <p>{moment(createdAt).format('YYYY-MM-DD HH:mm')}</p>
         </div>
         <div className={styles.listContentItem}>
-          <Progress percent={percent} status={status} strokeWidth={6} style={{ width: 180 }} />
+          <Progress
+            percent={percent}
+            status={status}
+            strokeWidth={6}
+            style={{width: 180}}
+          />
         </div>
       </div>
     );
@@ -123,11 +132,13 @@ export default class BasicList extends PureComponent {
             className={styles.listCard}
             bordered={false}
             title="标准列表"
-            style={{ marginTop: 24 }}
-            bodyStyle={{ padding: '0 32px 40px 32px' }}
-            extra={extraContent}
-          >
-            <Button type="dashed" style={{ width: '100%', marginBottom: 8 }} icon="plus">
+            style={{marginTop: 24}}
+            bodyStyle={{padding: '0 32px 40px 32px'}}
+            extra={extraContent}>
+            <Button
+              type="dashed"
+              style={{width: '100%', marginBottom: 8}}
+              icon="plus">
               添加
             </Button>
             <List
@@ -139,7 +150,9 @@ export default class BasicList extends PureComponent {
               renderItem={item => (
                 <List.Item actions={[<a>编辑</a>, <MoreBtn />]}>
                   <List.Item.Meta
-                    avatar={<Avatar src={item.logo} shape="square" size="large" />}
+                    avatar={
+                      <Avatar src={item.logo} shape="square" size="large" />
+                    }
                     title={<a href={item.href}>{item.title}</a>}
                     description={item.subDescription}
                   />

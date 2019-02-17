@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chart, Tooltip, Geom, Legend, Axis } from 'bizcharts';
+import {Chart, Tooltip, Geom, Legend, Axis} from 'bizcharts';
 import DataSet from '@antv/data-set';
 import Slider from 'bizcharts-plugin-slider';
 import autoHeight from '../autoHeight';
@@ -29,6 +29,7 @@ export default class TimelineChart extends React.Component {
     data.sort((a, b) => a.x - b.x);
 
     let max;
+
     if (data[0] && data[0].y1 && data[0].y2) {
       max = Math.max(
         [...data].sort((a, b) => b.y1 - a.y1)[0].y1,
@@ -44,22 +45,27 @@ export default class TimelineChart extends React.Component {
     });
 
     const dv = ds.createView();
+
     dv
       .source(data)
       .transform({
         type: 'filter',
         callback: obj => {
           const date = obj.x;
-          return date <= ds.state.end && date >= ds.state.start;
+
+          
+return date <= ds.state.end && date >= ds.state.start;
         },
       })
       .transform({
         type: 'map',
         callback(row) {
-          const newRow = { ...row };
+          const newRow = {...row};
+
           newRow[titleMap.y1] = row.y1;
           newRow[titleMap.y2] = row.y2;
-          return newRow;
+          
+return newRow;
         },
       })
       .transform({
@@ -91,12 +97,12 @@ export default class TimelineChart extends React.Component {
         height={26}
         xAxis="x"
         yAxis="y1"
-        scales={{ x: timeScale }}
+        scales={{x: timeScale}}
         data={data}
         start={ds.state.start}
         end={ds.state.end}
-        backgroundChart={{ type: 'line' }}
-        onChange={({ startValue, endValue }) => {
+        backgroundChart={{type: 'line'}}
+        onChange={({startValue, endValue}) => {
           ds.setState('start', startValue);
           ds.setState('end', endValue);
         }}
@@ -104,16 +110,26 @@ export default class TimelineChart extends React.Component {
     );
 
     return (
-      <div className={styles.timelineChart} style={{ height: height + 30 }}>
+      <div className={styles.timelineChart} style={{height: height + 30}}>
         <div>
           {title && <h4>{title}</h4>}
-          <Chart height={height} padding={padding} data={dv} scale={cols} forceFit>
+          <Chart
+            height={height}
+            padding={padding}
+            data={dv}
+            scale={cols}
+            forceFit>
             <Axis name="x" />
             <Tooltip />
             <Legend name="key" position="top" />
-            <Geom type="line" position="x*value" size={borderWidth} color="key" />
+            <Geom
+              type="line"
+              position="x*value"
+              size={borderWidth}
+              color="key"
+            />
           </Chart>
-          <div style={{ marginRight: -20 }}>
+          <div style={{marginRight: -20}}>
             <SliderGen />
           </div>
         </div>

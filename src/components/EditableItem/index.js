@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import { Input, Icon } from 'antd';
+import React, {PureComponent} from 'react';
+import {Input, Icon} from 'antd';
 import styles from './index.less';
 
 export default class EditableItem extends PureComponent {
@@ -8,25 +8,32 @@ export default class EditableItem extends PureComponent {
     editable: false,
   };
   handleChange = e => {
-    const { value } = e.target;
-    this.setState({ value });
+    const {value} = e.target;
+
+    this.setState({value});
   };
   check = () => {
-    this.setState({ editable: false });
+    this.setState({editable: false});
     if (this.props.onChange) {
       this.props.onChange(this.state.value);
     }
   };
   edit = () => {
-    this.setState({ editable: true });
+    this.setState({editable: true});
   };
   render() {
-    const { value, editable } = this.state;
-    return (
+    const {value, editable} = this.state;
+
+    
+return (
       <div className={styles.editableItem}>
         {editable ? (
           <div className={styles.wrapper}>
-            <Input value={value} onChange={this.handleChange} onPressEnter={this.check} />
+            <Input
+              value={value}
+              onChange={this.handleChange}
+              onPressEnter={this.check}
+            />
             <Icon type="check" className={styles.icon} onClick={this.check} />
           </div>
         ) : (

@@ -1,6 +1,6 @@
 import React from 'react';
 import PromiseRender from './PromiseRender';
-import { CURRENT } from './index';
+import {CURRENT} from './index';
 
 function isPromise(obj) {
   return (
@@ -29,7 +29,8 @@ const checkPermissions = (authority, currentAuthority, target, Exception) => {
     if (authority.indexOf(currentAuthority) >= 0) {
       return target;
     }
-    return Exception;
+    
+return Exception;
   }
 
   // string 处理
@@ -37,7 +38,8 @@ const checkPermissions = (authority, currentAuthority, target, Exception) => {
     if (authority === currentAuthority) {
       return target;
     }
-    return Exception;
+    
+return Exception;
   }
 
   // Promise 处理
@@ -49,10 +51,12 @@ const checkPermissions = (authority, currentAuthority, target, Exception) => {
   if (typeof authority === 'function') {
     try {
       const bool = authority(currentAuthority);
+
       if (bool) {
         return target;
       }
-      return Exception;
+      
+return Exception;
     } catch (error) {
       throw error;
     }
@@ -60,7 +64,7 @@ const checkPermissions = (authority, currentAuthority, target, Exception) => {
   throw new Error('unsupported parameters');
 };
 
-export { checkPermissions };
+export {checkPermissions};
 
 const check = (authority, target, Exception) => {
   return checkPermissions(authority, CURRENT, target, Exception);

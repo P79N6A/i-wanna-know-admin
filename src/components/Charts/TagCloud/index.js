@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Chart, Geom, Coord, Shape } from 'bizcharts';
+import React, {Component} from 'react';
+import {Chart, Geom, Coord, Shape} from 'bizcharts';
 import DataSet from '@antv/data-set';
 import Debounce from 'lodash-decorators/debounce';
 import Bind from 'lodash-decorators/bind';
@@ -10,7 +10,8 @@ import styles from './index.less';
 /* eslint no-underscore-dangle: 0 */
 /* eslint no-param-reassign: 0 */
 
-const imgUrl = 'https://gw.alipayobjects.com/zos/rmsportal/gWyeGLCdFFRavBGIDzWk.png';
+const imgUrl =
+  'https://gw.alipayobjects.com/zos/rmsportal/gWyeGLCdFFRavBGIDzWk.png';
 
 @autoHeight()
 class TagCloud extends Component {
@@ -65,7 +66,9 @@ class TagCloud extends Component {
     Shape.registerShape('point', 'cloud', {
       drawShape(cfg, container) {
         const attrs = getTextAttrs(cfg);
-        return container.addShape('text', {
+
+        
+return container.addShape('text', {
           attrs: Object.assign(attrs, {
             x: cfg.x,
             y: cfg.y,
@@ -79,7 +82,7 @@ class TagCloud extends Component {
   @Debounce(500)
   renderChart(nextProps) {
     // const colors = ['#1890FF', '#41D9C7', '#2FC25B', '#FACC14', '#9AE65C'];
-    const { data, height } = nextProps || this.props;
+    const {data, height} = nextProps || this.props;
 
     if (data.length < 1 || !this.root) {
       return;
@@ -92,6 +95,7 @@ class TagCloud extends Component {
       const dv = new DataSet.View().source(data);
       const range = dv.range('value');
       const [min, max] = range;
+
       dv.transform({
         type: 'tag-cloud',
         fields: ['name', 'value'],
@@ -132,15 +136,14 @@ class TagCloud extends Component {
   }
 
   render() {
-    const { className, height } = this.props;
-    const { dv, w, h } = this.state;
+    const {className, height} = this.props;
+    const {dv, w, h} = this.state;
 
     return (
       <div
         className={classNames(styles.tagCloud, className)}
-        style={{ width: '100%', height }}
-        ref={this.saveRootRef}
-      >
+        style={{width: '100%', height}}
+        ref={this.saveRootRef}>
         {dv && (
           <Chart
             width={w}
@@ -148,10 +151,9 @@ class TagCloud extends Component {
             data={dv}
             padding={0}
             scale={{
-              x: { nice: false },
-              y: { nice: false },
-            }}
-          >
+              x: {nice: false},
+              y: {nice: false},
+            }}>
             <Coord reflect="y" />
             <Geom type="point" position="x*y" color="text" shape="cloud" />
           </Chart>

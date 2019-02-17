@@ -18,6 +18,11 @@ const QUESTIONS = `
     userId: String!
     time: Float!
   }
+
+  type Questions {
+    list: [Question]
+    total: Int!
+  }
 `;
 
 module.exports = QUESTIONS;

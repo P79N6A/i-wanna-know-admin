@@ -1,4 +1,4 @@
-import { queryBasicProfile, queryAdvancedProfile } from '../services/api';
+import {queryBasicProfile, queryAdvancedProfile} from '../services/api';
 
 export default {
   namespace: 'profile',
@@ -11,15 +11,17 @@ export default {
   },
 
   effects: {
-    *fetchBasic(_, { call, put }) {
+    *fetchBasic(_, {call, put}) {
       const response = yield call(queryBasicProfile);
+
       yield put({
         type: 'show',
         payload: response,
       });
     },
-    *fetchAdvanced(_, { call, put }) {
+    *fetchAdvanced(_, {call, put}) {
       const response = yield call(queryAdvancedProfile);
+
       yield put({
         type: 'show',
         payload: response,
@@ -28,7 +30,7 @@ export default {
   },
 
   reducers: {
-    show(state, { payload }) {
+    show(state, {payload}) {
       return {
         ...state,
         ...payload,

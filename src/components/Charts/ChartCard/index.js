@@ -1,11 +1,12 @@
 import React from 'react';
-import { Card, Spin } from 'antd';
+import {Card, Spin} from 'antd';
 import classNames from 'classnames';
 
 import styles from './index.less';
 
 const renderTotal = total => {
   let totalDom;
+
   switch (typeof total) {
     case 'undefined':
       totalDom = null;
@@ -16,7 +17,8 @@ const renderTotal = total => {
     default:
       totalDom = <div className={styles.total}>{total}</div>;
   }
-  return totalDom;
+  
+return totalDom;
 };
 
 const ChartCard = ({
@@ -35,8 +37,7 @@ const ChartCard = ({
       <div
         className={classNames(styles.chartTop, {
           [styles.chartTopMargin]: !children && !footer,
-        })}
-      >
+        })}>
         <div className={styles.avatar}>{avatar}</div>
         <div className={styles.metaWrap}>
           <div className={styles.meta}>
@@ -47,7 +48,9 @@ const ChartCard = ({
         </div>
       </div>
       {children && (
-        <div className={styles.content} style={{ height: contentHeight || 'auto' }}>
+        <div
+          className={styles.content}
+          style={{height: contentHeight || 'auto'}}>
           <div className={contentHeight && styles.contentFixed}>{children}</div>
         </div>
       )}
@@ -55,8 +58,7 @@ const ChartCard = ({
         <div
           className={classNames(styles.footer, {
             [styles.footerMargin]: !children,
-          })}
-        >
+          })}>
           {footer}
         </div>
       )}
@@ -64,7 +66,7 @@ const ChartCard = ({
   );
 
   return (
-    <Card bodyStyle={{ padding: '20px 24px 8px 24px' }} {...rest}>
+    <Card bodyStyle={{padding: '20px 24px 8px 24px'}} {...rest}>
       {
         <Spin spinning={loading} wrapperClassName={styles.spin}>
           {content}

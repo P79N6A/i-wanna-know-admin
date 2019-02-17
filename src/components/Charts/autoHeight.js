@@ -6,7 +6,9 @@ function computeHeight(node) {
   const padding =
     parseInt(getComputedStyle(node).paddingTop, 10) +
     parseInt(getComputedStyle(node).paddingBottom, 10);
-  return totalHeight - padding;
+
+  
+return totalHeight - padding;
 }
 
 function getAutoHeight(n) {
@@ -37,11 +39,13 @@ const autoHeight = () => WrappedComponent => {
     };
 
     componentDidMount() {
-      const { height } = this.props;
+      const {height} = this.props;
+
       if (!height) {
         const h = getAutoHeight(this.root);
         // eslint-disable-next-line
-        this.setState({ computedHeight: h });
+
+        this.setState({computedHeight: h});
       }
     }
 
@@ -50,11 +54,15 @@ const autoHeight = () => WrappedComponent => {
     };
 
     render() {
-      const { height } = this.props;
-      const { computedHeight } = this.state;
+      const {height} = this.props;
+      const {computedHeight} = this.state;
       const h = height || computedHeight;
-      return (
-        <div ref={this.handleRoot}>{h > 0 && <WrappedComponent {...this.props} height={h} />}</div>
+
+      
+return (
+        <div ref={this.handleRoot}>
+          {h > 0 && <WrappedComponent {...this.props} height={h} />}
+        </div>
       );
     }
   };

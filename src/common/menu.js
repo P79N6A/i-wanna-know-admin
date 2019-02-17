@@ -1,4 +1,4 @@
-import { isUrl } from '../utils/utils';
+import {isUrl} from '../utils/utils';
 
 const menuData = [
   {
@@ -163,7 +163,8 @@ const menuData = [
 
 function formatter(data, parentPath = '/', parentAuthority) {
   return data.map(item => {
-    let { path } = item;
+    let {path} = item;
+
     if (!isUrl(path)) {
       path = parentPath + item.path;
     }
@@ -172,10 +173,16 @@ function formatter(data, parentPath = '/', parentAuthority) {
       path,
       authority: item.authority || parentAuthority,
     };
+
     if (item.children) {
-      result.children = formatter(item.children, `${parentPath}${item.path}/`, item.authority);
+      result.children = formatter(
+        item.children,
+        `${parentPath}${item.path}/`,
+        item.authority
+      );
     }
-    return result;
+    
+return result;
   });
 }
 

@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Upload, Icon, message } from 'antd';
+import {Upload, Icon, message} from 'antd';
 
 export default class ImageUpload extends Component {
   static propTypes = {
     imageName: PropTypes.string,
     onImageChange: PropTypes.func,
-  }
+  };
 
   state = {
     isUploading: false,
-  }
+  };
 
   beforeUpload(file) {
     const IMG_TYPES = ['image/jpeg', 'image/png', 'image/bmp'];
@@ -28,9 +28,9 @@ export default class ImageUpload extends Component {
     return isImg && isLt2M;
   }
 
-  handleChange = (info) => {
+  handleChange = info => {
     if (info.file.status === 'uploading') {
-      this.setState({ loading: true });
+      this.setState({loading: true});
       return;
     }
 
@@ -42,11 +42,11 @@ export default class ImageUpload extends Component {
     if (info.file.status === 'error') {
       message.error('上传失败');
     }
-  }
+  };
 
   render() {
-    const { isUploading } = this.state;
-    const { imageName } = this.props;
+    const {isUploading} = this.state;
+    const {imageName} = this.props;
     const uploadButton = (
       <div>
         <Icon type={isUploading ? 'loading' : 'plus'} />
@@ -62,18 +62,18 @@ export default class ImageUpload extends Component {
         showUploadList={false}
         action="//localhost:8080/classificationIcons"
         beforeUpload={this.beforeUpload}
-        onChange={this.handleChange}
-      >
-        {
-          imageName ?
-            <img
-              width="100"
-              height="100"
-              src={`http://localhost:8080/classificationIcons/${imageName}`}
-              alt={imageName} /> :
-            uploadButton
-        }
+        onChange={this.handleChange}>
+        {imageName ? (
+          <img
+            width="100"
+            height="100"
+            src={`http://localhost:8080/classificationIcons/${imageName}`}
+            alt={imageName}
+          />
+        ) : (
+          uploadButton
+        )}
       </Upload>
-    )
+    );
   }
 }

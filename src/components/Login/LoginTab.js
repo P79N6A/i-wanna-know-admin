@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Tabs } from 'antd';
+import {Tabs} from 'antd';
 
-const { TabPane } = Tabs;
+const {TabPane} = Tabs;
 
 const generateId = (() => {
   let i = 0;
-  return (prefix = '') => {
+
+  
+return (prefix = '') => {
     i += 1;
-    return `${prefix}${i}`;
+    
+return `${prefix}${i}`;
   };
 })();
 

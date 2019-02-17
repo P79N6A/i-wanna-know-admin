@@ -8,18 +8,19 @@ import createHistory from 'history/createBrowserHistory';
 import createLoading from 'dva-loading';
 import ReactDOM from 'react-dom';
 import ApolloClient from 'apollo-boost';
-import { HttpLink } from 'apollo-link-http';
-import { ApolloLink } from 'apollo-link';
-import { onError } from 'apollo-link-error';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloProvider } from 'react-apollo';
-import { message } from 'antd';
+import {HttpLink} from 'apollo-link-http';
+import {ApolloLink} from 'apollo-link';
+import {onError} from 'apollo-link-error';
+import {InMemoryCache} from 'apollo-cache-inmemory';
+import {ApolloProvider} from 'react-apollo';
+import {message} from 'antd';
 import handleError from './utils/errors';
 import 'moment/locale/zh-cn';
 import './rollbar';
 
 import './index.less';
 import './styles/common.less';
+
 // 1. Initialize
 const app = dva({
   history: createHistory(),
@@ -29,8 +30,7 @@ const app = dva({
 const client = new ApolloClient({
   uri: 'http://localhost:8080/graphql',
   clientState: {
-    defaults: {
-    },
+    defaults: {},
     typeDefs: `
           ${import('./types/questions')}
           ${import('./types/classifications')}
@@ -39,20 +39,20 @@ const client = new ApolloClient({
       `,
   },
   link: ApolloLink.from([
-    new HttpLink({ uri: 'http://192.168.1.100:8080/graphql' }),
+    new HttpLink({uri: 'http://192.168.1.100:8080/graphql'}),
   ]),
-  onError: (({ graphQLErrors, networkError }) => {
+  onError: ({graphQLErrors, networkError}) => {
     if (graphQLErrors)
-      graphQLErrors.map(({ messageStr, locations, path }) =>
+      graphQLErrors.map(({messageStr, locations, path}) =>
         message.error(
-          `[GraphQL Error]: Message: ${messageStr}, Location: ${locations}, Path: ${path}`,
-        ),
+          `[GraphQL Error]: Message: ${messageStr}, Location: ${locations}, Path: ${path}`
+        )
       );
 
     if (networkError) {
       handleError(networkError);
     }
-  }),
+  },
   cache: new InMemoryCache(),
 });
 
@@ -68,10 +68,11 @@ app.router(require('./router').default);
 // 5. Start
 const App = app.start();
 
-ReactDOM.render((
-  <ApolloProvider client={client} >
+ReactDOM.render(
+  <ApolloProvider client={client}>
     <App />
-  </ApolloProvider>
-), document.querySelector('#root'));
+  </ApolloProvider>,
+  document.querySelector('#root')
+);
 
 export default app._store; // eslint-disable-line
