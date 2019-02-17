@@ -56,8 +56,7 @@ export default class LoginPage extends Component {
     const {login, submitting} = this.props;
     const {type} = this.state;
 
-    
-return (
+    return (
       <div className={styles.main}>
         <Login
           defaultActiveKey={type}

@@ -60,8 +60,8 @@ export default class Pie extends Component {
 
       origin.color = item[0].color;
       origin.checked = true;
-      
-return origin;
+
+      return origin;
     });
 
     this.setState({
@@ -77,8 +77,8 @@ return origin;
 
     if (!hasLegend || !this.root) {
       window.removeEventListener('resize', this.resize);
-      
-return;
+
+      return;
     }
     if (this.root.parentNode.clientWidth <= 380) {
       if (!this.state.legendBlock) {

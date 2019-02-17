@@ -76,8 +76,8 @@ export default class Register extends Component {
     if (value && value.length > 5) {
       return 'pass';
     }
-    
-return 'poor';
+
+    return 'poor';
   };
 
   handleSubmit = e => {
@@ -151,8 +151,7 @@ return 'poor';
     const value = form.getFieldValue('password');
     const passwordStatus = this.getPasswordStatus();
 
-    
-return value && value.length ? (
+    return value && value.length ? (
       <div className={styles[`progress-${passwordStatus}`]}>
         <Progress
           status={passwordProgressMap[passwordStatus]}
@@ -170,8 +169,7 @@ return value && value.length ? (
     const {getFieldDecorator} = form;
     const {count, prefix} = this.state;
 
-    
-return (
+    return (
       <div className={styles.main}>
         <h3>注册</h3>
         <Form onSubmit={this.handleSubmit}>

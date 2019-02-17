@@ -12,8 +12,7 @@ class AuthorizedRoute extends React.Component {
       ...rest
     } = this.props;
 
-    
-return (
+    return (
       <Authorized
         authority={authority}
         noMatch={

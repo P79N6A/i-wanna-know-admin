@@ -8,8 +8,7 @@ const FormItem = Form.Item;
 const LoginSubmit = ({className, ...rest}) => {
   const clsString = classNames(styles.submit, className);
 
-  
-return (
+  return (
     <FormItem>
       <Button
         size="large"

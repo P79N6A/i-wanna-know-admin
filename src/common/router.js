@@ -22,13 +22,13 @@ const dynamicWrapper = (app, models, component) => {
         app.model(require(`../models/${model}`).default);
       }
     });
-    
-return props => {
+
+    return props => {
       if (!routerDataCache) {
         routerDataCache = getRouterData(app);
       }
-      
-return createElement(component().default, {
+
+      return createElement(component().default, {
         ...props,
         routerData: routerDataCache,
       });
@@ -46,12 +46,11 @@ return createElement(component().default, {
       if (!routerDataCache) {
         routerDataCache = getRouterData(app);
       }
-      
-return component().then(raw => {
+
+      return component().then(raw => {
         const Component = raw.default || raw;
 
-        
-return props =>
+        return props =>
           createElement(Component, {
             ...props,
             routerData: routerDataCache,
@@ -72,8 +71,8 @@ function getFlatMenuData(menus) {
       keys[item.path] = {...item};
     }
   });
-  
-return keys;
+
+  return keys;
 }
 
 export const getRouterData = app => {
@@ -270,6 +269,6 @@ export const getRouterData = app => {
     };
     routerData[path] = router;
   });
-  
-return routerData;
+
+  return routerData;
 };

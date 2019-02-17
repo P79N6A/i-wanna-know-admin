@@ -39,8 +39,8 @@ const formatWan = val => {
       </span>
     );
   }
-  
-return result;
+
+  return result;
 };
 
 /* eslint react/no-array-index-key: 0 */

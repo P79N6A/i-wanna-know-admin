@@ -187,8 +187,7 @@ export default class WaterWave extends PureComponent {
     const {radio} = this.state;
     const {percent, title, height} = this.props;
 
-    
-return (
+    return (
       <div
         className={styles.waterWave}
         ref={n => (this.root = n)}

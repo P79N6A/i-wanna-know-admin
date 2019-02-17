@@ -10,8 +10,8 @@ function initTotalList(columns) {
       totalList.push({...column, total: 0});
     }
   });
-  
-return totalList;
+
+  return totalList;
 }
 
 class StandardTable extends PureComponent {

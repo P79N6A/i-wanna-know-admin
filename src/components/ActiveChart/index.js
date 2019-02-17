@@ -18,8 +18,8 @@ function getActiveData() {
       y: Math.floor(Math.random() * 200) + i * 50,
     });
   }
-  
-return activeData;
+
+  return activeData;
 }
 
 export default class ActiveChart extends Component {

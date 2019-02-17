@@ -43,8 +43,7 @@ const CreateForm = Form.create()(props => {
     });
   };
 
-  
-return (
+  return (
     <Modal
       title="新建规则"
       visible={modalVisible}
@@ -90,8 +89,8 @@ export default class TableList extends PureComponent {
       const newObj = {...obj};
 
       newObj[key] = getValue(filtersArg[key]);
-      
-return newObj;
+
+      return newObj;
     }, {});
 
     const params = {
@@ -208,8 +207,7 @@ return newObj;
   renderSimpleForm() {
     const {getFieldDecorator} = this.props.form;
 
-    
-return (
+    return (
       <Form onSubmit={this.handleSearch} layout="inline">
         <Row gutter={{md: 8, lg: 24, xl: 48}}>
           <Col md={8} sm={24}>
@@ -248,8 +246,7 @@ return (
   renderAdvancedForm() {
     const {getFieldDecorator} = this.props.form;
 
-    
-return (
+    return (
       <Form onSubmit={this.handleSearch} layout="inline">
         <Row gutter={{md: 8, lg: 24, xl: 48}}>
           <Col md={8} sm={24}>

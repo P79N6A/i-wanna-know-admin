@@ -56,8 +56,7 @@ class Step3 extends React.PureComponent {
       </Fragment>
     );
 
-    
-return (
+    return (
       <Result
         type="success"
         title="操作成功"

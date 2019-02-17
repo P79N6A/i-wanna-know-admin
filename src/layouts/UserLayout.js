@@ -40,14 +40,13 @@ class UserLayout extends React.PureComponent {
     if (routerData[pathname] && routerData[pathname].name) {
       title = `${routerData[pathname].name} - Ant Design Pro`;
     }
-    
-return title;
+
+    return title;
   }
   render() {
     const {routerData, match} = this.props;
 
-    
-return (
+    return (
       <DocumentTitle title={this.getPageTitle()}>
         <div className={styles.container}>
           <div className={styles.content}>

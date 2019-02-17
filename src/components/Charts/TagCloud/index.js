@@ -67,8 +67,7 @@ class TagCloud extends Component {
       drawShape(cfg, container) {
         const attrs = getTextAttrs(cfg);
 
-        
-return container.addShape('text', {
+        return container.addShape('text', {
           attrs: Object.assign(attrs, {
             x: cfg.x,
             y: cfg.y,

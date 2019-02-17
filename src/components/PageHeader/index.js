@@ -18,8 +18,8 @@ export function getBreadcrumb(breadcrumbNameMap, url) {
       }
     });
   }
-  
-return breadcrumb || {};
+
+  return breadcrumb || {};
 }
 
 export default class PageHeader extends PureComponent {
@@ -68,8 +68,7 @@ export default class PageHeader extends PureComponent {
   conversionFromProps = () => {
     const {breadcrumbList, breadcrumbSeparator, linkElement = 'a'} = this.props;
 
-    
-return (
+    return (
       <Breadcrumb className={styles.breadcrumb} separator={breadcrumbSeparator}>
         {breadcrumbList.map(item => (
           <Breadcrumb.Item key={item.title}>
@@ -97,8 +96,7 @@ return (
       const isLinkable =
         index !== pathSnippets.length - 1 && currentBreadcrumb.component;
 
-      
-return currentBreadcrumb.name && !currentBreadcrumb.hideInBreadcrumb ? (
+      return currentBreadcrumb.name && !currentBreadcrumb.hideInBreadcrumb ? (
         <Breadcrumb.Item key={url}>
           {createElement(
             isLinkable ? linkElement : 'span',
@@ -121,8 +119,8 @@ return currentBreadcrumb.name && !currentBreadcrumb.hideInBreadcrumb ? (
         )}
       </Breadcrumb.Item>
     );
-    
-return (
+
+    return (
       <Breadcrumb className={styles.breadcrumb} separator={breadcrumbSeparator}>
         {extraBreadcrumbItems}
       </Breadcrumb>
@@ -162,8 +160,8 @@ return (
     if (routerLocation && routerLocation.pathname) {
       return this.conversionFromLocation(routerLocation, breadcrumbNameMap);
     }
-    
-return null;
+
+    return null;
   };
   // 渲染Breadcrumb 子节点
   // Render the Breadcrumb child node
@@ -171,8 +169,7 @@ return null;
     const {linkElement = 'a'} = this.props;
     const last = routes.indexOf(route) === routes.length - 1;
 
-    
-return last || !route.component ? (
+    return last || !route.component ? (
       <span>{route.breadcrumbName}</span>
     ) : (
       createElement(

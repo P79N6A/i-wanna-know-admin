@@ -24,8 +24,8 @@ export default {
     registerHandle(state, {payload}) {
       setAuthority('user');
       reloadAuthorized();
-      
-return {
+
+      return {
         ...state,
         status: payload.status,
       };

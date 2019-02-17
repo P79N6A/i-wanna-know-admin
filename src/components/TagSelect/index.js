@@ -56,8 +56,7 @@ class TagSelect extends Component {
       .filter(child => this.isTagSelectOption(child))
       .map(child => child.props.value);
 
-    
-return checkedTags || [];
+    return checkedTags || [];
   }
 
   handleTagChange = (value, checked) => {
@@ -99,8 +98,7 @@ return checkedTags || [];
       [styles.expanded]: expand,
     });
 
-    
-return (
+    return (
       <div className={cls} style={style}>
         <CheckableTag
           checked={checkedAll}
@@ -118,8 +116,8 @@ return (
                 onChange: this.handleTagChange,
               });
             }
-            
-return child;
+
+            return child;
           })}
         {expandable && (
           <a className={styles.trigger} onClick={this.handleExpand}>

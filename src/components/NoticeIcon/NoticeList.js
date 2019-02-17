@@ -20,8 +20,8 @@ export default function NoticeList({
       </div>
     );
   }
-  
-return (
+
+  return (
     <div>
       <List className={styles.list}>
         {data.map((item, i) => {
@@ -29,8 +29,7 @@ return (
             [styles.read]: item.read,
           });
 
-          
-return (
+          return (
             <List.Item
               className={itemCls}
               key={item.key || i}

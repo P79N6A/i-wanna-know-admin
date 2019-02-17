@@ -40,8 +40,8 @@ Shape.registerShape('point', 'pointer', {
         lineCap: 'round',
       },
     });
-    
-return group.addShape('circle', {
+
+    return group.addShape('circle', {
       attrs: {
         x: center.x,
         y: center.y,
@@ -77,8 +77,7 @@ export default class Gauge extends React.Component {
     };
     const data = [{value: percent / 10}];
 
-    
-return (
+    return (
       <Chart
         height={height}
         data={data}

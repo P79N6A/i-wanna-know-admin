@@ -29,8 +29,8 @@ const checkPermissions = (authority, currentAuthority, target, Exception) => {
     if (authority.indexOf(currentAuthority) >= 0) {
       return target;
     }
-    
-return Exception;
+
+    return Exception;
   }
 
   // string 处理
@@ -38,8 +38,8 @@ return Exception;
     if (authority === currentAuthority) {
       return target;
     }
-    
-return Exception;
+
+    return Exception;
   }
 
   // Promise 处理
@@ -55,8 +55,8 @@ return Exception;
       if (bool) {
         return target;
       }
-      
-return Exception;
+
+      return Exception;
     } catch (error) {
       throw error;
     }

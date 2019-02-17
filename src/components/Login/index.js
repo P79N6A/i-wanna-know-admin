@@ -95,8 +95,8 @@ class Login extends Component {
         otherChildren.push(item);
       }
     });
-    
-return (
+
+    return (
       <div className={classNames(className, styles.login)}>
         <Form onSubmit={this.handleSubmit}>
           {tabs.length ? (

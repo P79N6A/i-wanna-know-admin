@@ -18,8 +18,7 @@ export default function Result({
   };
   const clsString = classNames(styles.result, className);
 
-  
-return (
+  return (
     <div className={clsString} {...restProps}>
       <div className={styles.icon}>{iconMap[type]}</div>
       <div className={styles.title}>{title}</div>

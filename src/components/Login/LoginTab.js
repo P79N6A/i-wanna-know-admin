@@ -7,11 +7,10 @@ const {TabPane} = Tabs;
 const generateId = (() => {
   let i = 0;
 
-  
-return (prefix = '') => {
+  return (prefix = '') => {
     i += 1;
-    
-return `${prefix}${i}`;
+
+    return `${prefix}${i}`;
   };
 })();
 

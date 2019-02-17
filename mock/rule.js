@@ -1,4 +1,4 @@
-import { parse } from 'url';
+import {parse} from 'url';
 
 // mock tableListDataSource
 let tableListDataSource = [];
@@ -42,8 +42,8 @@ export function getRule(req, res, u) {
       if (s[1] === 'descend') {
         return next[s[0]] - prev[s[0]];
       }
-      
-return prev[s[0]] - next[s[0]];
+
+      return prev[s[0]] - next[s[0]];
     });
   }
 
@@ -53,7 +53,9 @@ return prev[s[0]] - next[s[0]];
 
     status.forEach(s => {
       filterDataSource = filterDataSource.concat(
-        [...dataSource].filter(data => parseInt(data.status, 10) === parseInt(s[0], 10))
+        [...dataSource].filter(
+          data => parseInt(data.status, 10) === parseInt(s[0], 10)
+        )
       );
     });
     dataSource = filterDataSource;
@@ -93,12 +95,14 @@ export function postRule(req, res, u, b) {
   }
 
   const body = (b && b.body) || req.body;
-  const { method, no, description } = body;
+  const {method, no, description} = body;
 
   switch (method) {
     /* eslint no-case-declarations:0 */
     case 'delete':
-      tableListDataSource = tableListDataSource.filter(item => no.indexOf(item.no) === -1);
+      tableListDataSource = tableListDataSource.filter(
+        item => no.indexOf(item.no) === -1
+      );
       break;
     case 'post':
       const i = Math.ceil(Math.random() * 10000);

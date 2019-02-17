@@ -82,8 +82,8 @@ export default class BasicProfile extends Component {
       if (index === basicGoods.length) {
         obj.props.colSpan = 0;
       }
-      
-return obj;
+
+      return obj;
     };
     const goodsColumns = [
       {
@@ -94,8 +94,8 @@ return obj;
           if (index < basicGoods.length) {
             return <a href="">{text}</a>;
           }
-          
-return {
+
+          return {
             children: <span style={{fontWeight: 600}}>总计</span>,
             props: {
               colSpan: 4,
@@ -131,8 +131,8 @@ return {
           if (index < basicGoods.length) {
             return text;
           }
-          
-return <span style={{fontWeight: 600}}>{text}</span>;
+
+          return <span style={{fontWeight: 600}}>{text}</span>;
         },
       },
       {
@@ -144,14 +144,13 @@ return <span style={{fontWeight: 600}}>{text}</span>;
           if (index < basicGoods.length) {
             return text;
           }
-          
-return <span style={{fontWeight: 600}}>{text}</span>;
+
+          return <span style={{fontWeight: 600}}>{text}</span>;
         },
       },
     ];
 
-    
-return (
+    return (
       <PageHeaderLayout title="基础详情页">
         <Card bordered={false}>
           <DescriptionList

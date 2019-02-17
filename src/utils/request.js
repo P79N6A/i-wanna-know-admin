@@ -74,8 +74,8 @@ export default function request(url, options) {
       if (newOptions.method === 'DELETE' || response.status === 204) {
         return response.text();
       }
-      
-return response.json();
+
+      return response.json();
     })
     .catch(e => {
       const {dispatch} = store;
@@ -85,18 +85,18 @@ return response.json();
         dispatch({
           type: 'login/logout',
         });
-        
-return;
+
+        return;
       }
       if (status === 403) {
         dispatch(routerRedux.push('/exception/403'));
-        
-return;
+
+        return;
       }
       if (status <= 504 && status >= 500) {
         dispatch(routerRedux.push('/exception/500'));
-        
-return;
+
+        return;
       }
       if (status >= 404 && status < 422) {
         dispatch(routerRedux.push('/exception/404'));

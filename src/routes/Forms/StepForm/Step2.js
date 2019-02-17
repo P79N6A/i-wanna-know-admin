@@ -37,8 +37,7 @@ class Step2 extends React.PureComponent {
       });
     };
 
-    
-return (
+    return (
       <Form layout="horizontal" className={styles.stepForm}>
         <Alert
           closable

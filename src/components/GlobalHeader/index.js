@@ -42,12 +42,11 @@ export default class GlobalHeader extends PureComponent {
           </Tag>
         );
       }
-      
-return newNotice;
+
+      return newNotice;
     });
 
-    
-return groupBy(newNotices, 'type');
+    return groupBy(newNotices, 'type');
   }
   toggle = () => {
     const {collapsed, onCollapse} = this.props;

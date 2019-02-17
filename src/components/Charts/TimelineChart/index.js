@@ -53,8 +53,7 @@ export default class TimelineChart extends React.Component {
         callback: obj => {
           const date = obj.x;
 
-          
-return date <= ds.state.end && date >= ds.state.start;
+          return date <= ds.state.end && date >= ds.state.start;
         },
       })
       .transform({
@@ -64,8 +63,8 @@ return date <= ds.state.end && date >= ds.state.start;
 
           newRow[titleMap.y1] = row.y1;
           newRow[titleMap.y2] = row.y2;
-          
-return newRow;
+
+          return newRow;
         },
       })
       .transform({

@@ -107,8 +107,8 @@ class AdvancedForm extends PureComponent {
         if (!errors[key]) {
           return null;
         }
-        
-return (
+
+        return (
           <li
             key={key}
             className={styles.errorListItem}
@@ -120,8 +120,7 @@ return (
         );
       });
 
-      
-return (
+      return (
         <span className={styles.errorIcon}>
           <Popover
             title="表单校验信息"
@@ -136,8 +135,7 @@ return (
       );
     };
 
-    
-return (
+    return (
       <PageHeaderLayout
         title="高级表单"
         content="高级表单常见于一次性输入和提交大批量数据的场景。"

@@ -103,8 +103,7 @@ export default class Workplace extends PureComponent {
   renderActivities() {
     const {activities: {list}} = this.props;
 
-    
-return list.map(item => {
+    return list.map(item => {
       const events = item.template.split(/@\{([^{}]*)\}/gi).map(key => {
         if (item[key]) {
           return (
@@ -113,12 +112,11 @@ return list.map(item => {
             </a>
           );
         }
-        
-return key;
+
+        return key;
       });
 
-      
-return (
+      return (
         <List.Item key={item.id}>
           <List.Item.Meta
             avatar={<Avatar src={item.user.avatar} />}

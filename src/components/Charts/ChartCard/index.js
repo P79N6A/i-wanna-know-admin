@@ -17,8 +17,8 @@ const renderTotal = total => {
     default:
       totalDom = <div className={styles.total}>{total}</div>;
   }
-  
-return totalDom;
+
+  return totalDom;
 };
 
 const ChartCard = ({

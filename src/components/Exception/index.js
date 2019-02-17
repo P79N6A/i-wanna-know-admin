@@ -17,8 +17,7 @@ const Exception = ({
   const pageType = type in config ? type : '404';
   const clsString = classNames(styles.exception, className);
 
-  
-return (
+  return (
     <div className={clsString} {...rest}>
       <div className={styles.imgBlock}>
         <div

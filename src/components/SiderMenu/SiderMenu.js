@@ -25,8 +25,8 @@ const getIcon = icon => {
   if (typeof icon === 'string') {
     return <Icon type={icon} />;
   }
-  
-return icon;
+
+  return icon;
 };
 
 /**
@@ -40,8 +40,8 @@ export const getFlatMenuKeys = menu =>
     if (item.children) {
       return keys.concat(getFlatMenuKeys(item.children));
     }
-    
-return keys;
+
+    return keys;
   }, []);
 
 /**
@@ -82,8 +82,7 @@ export default class SiderMenu extends PureComponent {
   getDefaultCollapsedSubMenus(props) {
     const {location: {pathname}} = props || this.props;
 
-    
-return getMenuMatchKeys(this.flatMenuKeys, urlToList(pathname));
+    return getMenuMatchKeys(this.flatMenuKeys, urlToList(pathname));
   }
   /**
    * 判断是否是http链接.返回 Link 或 a
@@ -104,8 +103,8 @@ return getMenuMatchKeys(this.flatMenuKeys, urlToList(pathname));
         </a>
       );
     }
-    
-return (
+
+    return (
       <Link
         to={itemPath}
         target={target}
@@ -148,8 +147,8 @@ return (
           </SubMenu>
         );
       }
-      
-return null;
+
+      return null;
     } else {
       return (
         <Menu.Item key={item.path}>{this.getMenuItemPath(item)}</Menu.Item>
@@ -164,15 +163,14 @@ return null;
     if (!menusData) {
       return [];
     }
-    
-return menusData
+
+    return menusData
       .filter(item => item.name && !item.hideInMenu)
       .map(item => {
         // make dom
         const ItemDom = this.getSubMenuOrItem(item);
 
-        
-return this.checkPermissionItem(item.authority, ItemDom);
+        return this.checkPermissionItem(item.authority, ItemDom);
       })
       .filter(item => item);
   };
@@ -180,8 +178,7 @@ return this.checkPermissionItem(item.authority, ItemDom);
   getSelectedMenuKeys = () => {
     const {location: {pathname}} = this.props;
 
-    
-return getMenuMatchKeys(this.flatMenuKeys, urlToList(pathname));
+    return getMenuMatchKeys(this.flatMenuKeys, urlToList(pathname));
   };
   // conversion Path
   // 转化路径
@@ -197,11 +194,10 @@ return getMenuMatchKeys(this.flatMenuKeys, urlToList(pathname));
     if (this.props.Authorized && this.props.Authorized.check) {
       const {check} = this.props.Authorized;
 
-      
-return check(authority, ItemDom);
+      return check(authority, ItemDom);
     }
-    
-return ItemDom;
+
+    return ItemDom;
   };
   isMainMenu = key => {
     return this.menus.some(
@@ -232,8 +228,8 @@ return ItemDom;
     if (!selectedKeys.length) {
       selectedKeys = [openKeys[openKeys.length - 1]];
     }
-    
-return (
+
+    return (
       <Sider
         trigger={null}
         collapsible

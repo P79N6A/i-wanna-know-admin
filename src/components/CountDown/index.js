@@ -56,8 +56,8 @@ class CountDown extends Component {
     }
 
     lastTime = targetTime - new Date().getTime();
-    
-return {
+
+    return {
       lastTime: lastTime < 0 ? 0 : lastTime,
     };
   };
@@ -72,8 +72,7 @@ return {
     const m = Math.floor((time - h * hours) / minutes);
     const s = Math.floor((time - h * hours - m * minutes) / 1000);
 
-    
-return (
+    return (
       <span>
         {fixedZero(h)}:{fixedZero(m)}:{fixedZero(s)}
       </span>

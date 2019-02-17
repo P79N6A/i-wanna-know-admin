@@ -7,8 +7,7 @@ function computeHeight(node) {
     parseInt(getComputedStyle(node).paddingTop, 10) +
     parseInt(getComputedStyle(node).paddingBottom, 10);
 
-  
-return totalHeight - padding;
+  return totalHeight - padding;
 }
 
 function getAutoHeight(n) {
@@ -58,8 +57,7 @@ const autoHeight = () => WrappedComponent => {
       const {computedHeight} = this.state;
       const h = height || computedHeight;
 
-      
-return (
+      return (
         <div ref={this.handleRoot}>
           {h > 0 && <WrappedComponent {...this.props} height={h} />}
         </div>

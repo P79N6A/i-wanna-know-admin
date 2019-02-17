@@ -61,8 +61,7 @@ function generator({defaultProps, defaultRules, type}) {
         if (type === 'Captcha') {
           const inputProps = omit(otherProps, ['onGetCaptcha']);
 
-          
-return (
+          return (
             <FormItem>
               <Row gutter={8}>
                 <Col span={16}>
@@ -83,8 +82,8 @@ return (
             </FormItem>
           );
         }
-        
-return (
+
+        return (
           <FormItem>
             {getFieldDecorator(name, options)(
               <WrappedComponent {...defaultProps} {...otherProps} />

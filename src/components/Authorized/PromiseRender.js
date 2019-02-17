@@ -37,14 +37,13 @@ export default class PromiseRender extends React.PureComponent {
     if (!React.isValidElement(target)) {
       return target;
     }
-    
-return () => target;
+
+    return () => target;
   };
   render() {
     const Component = this.state.component;
 
-    
-return Component ? (
+    return Component ? (
       <Component {...this.props} />
     ) : (
       <div

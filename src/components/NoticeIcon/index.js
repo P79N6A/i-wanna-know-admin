@@ -49,8 +49,7 @@ export default class NoticeIcon extends PureComponent {
           ? `${child.props.title} (${child.props.list.length})`
           : child.props.title;
 
-      
-return (
+      return (
         <TabPane tab={title} key={child.props.title}>
           <List
             {...child.props}
@@ -64,8 +63,7 @@ return (
       );
     });
 
-    
-return (
+    return (
       <Spin spinning={loading} delay={0}>
         <Tabs className={styles.tabs} onChange={this.onTabChange}>
           {panes}
@@ -93,8 +91,8 @@ return (
     if ('popupVisible' in this.props) {
       popoverProps.visible = this.props.popupVisible;
     }
-    
-return (
+
+    return (
       <Popover
         placement="bottomRight"
         content={notificationBox}

@@ -28,8 +28,7 @@ export default class StepForm extends PureComponent {
   render() {
     const {match, routerData, location} = this.props;
 
-    
-return (
+    return (
       <PageHeaderLayout
         title="分步表单"
         tabActiveKey={location.pathname}

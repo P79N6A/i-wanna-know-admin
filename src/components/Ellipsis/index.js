@@ -78,8 +78,8 @@ export default class Ellipsis extends Component {
           text,
           targetCount: text.length,
         });
-        
-return;
+
+        return;
       }
 
       // bisection
@@ -112,8 +112,8 @@ return;
       } else {
         begin = mid;
         mid = Math.floor((end - begin) / 2) + begin;
-        
-return this.bisection(th, mid, begin, end, text, shadowNode);
+
+        return this.bisection(th, mid, begin, end, text, shadowNode);
       }
     } else {
       if (mid - 1 < 0) {
@@ -126,8 +126,8 @@ return this.bisection(th, mid, begin, end, text, shadowNode);
       } else {
         end = mid;
         mid = Math.floor((end - begin) / 2) + begin;
-        
-return this.bisection(th, mid, begin, end, text, shadowNode);
+
+        return this.bisection(th, mid, begin, end, text, shadowNode);
       }
     }
   };
@@ -197,8 +197,7 @@ return this.bisection(th, mid, begin, end, text, shadowNode);
     if (isSupportLineClamp) {
       const style = `#${id}{-webkit-line-clamp:${lines};-webkit-box-orient: vertical;}`;
 
-      
-return (
+      return (
         <div id={id} className={cls} {...restProps}>
           <style>{style}</style>
           {tooltip ? (

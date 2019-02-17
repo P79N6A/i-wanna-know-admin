@@ -19,8 +19,7 @@ function RouterConfig({history, app}) {
   const UserLayout = routerData['/user'].component;
   const BasicLayout = routerData['/'].component;
 
-  
-return (
+  return (
     <LocaleProvider locale={zhCN}>
       <ConnectedRouter history={history}>
         <Switch>

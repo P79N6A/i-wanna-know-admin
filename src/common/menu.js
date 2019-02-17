@@ -181,8 +181,8 @@ function formatter(data, parentPath = '/', parentAuthority) {
         item.authority
       );
     }
-    
-return result;
+
+    return result;
   });
 }
 

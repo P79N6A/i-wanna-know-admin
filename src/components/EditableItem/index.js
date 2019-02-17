@@ -24,8 +24,7 @@ export default class EditableItem extends PureComponent {
   render() {
     const {value, editable} = this.state;
 
-    
-return (
+    return (
       <div className={styles.editableItem}>
         {editable ? (
           <div className={styles.wrapper}>

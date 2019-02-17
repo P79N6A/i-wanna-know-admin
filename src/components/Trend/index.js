@@ -20,8 +20,7 @@ const Trend = ({
     className
   );
 
-  
-return (
+  return (
     <div
       {...rest}
       className={classString}

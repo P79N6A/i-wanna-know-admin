@@ -32,8 +32,7 @@ class Step1 extends React.PureComponent {
       });
     };
 
-    
-return (
+    return (
       <Fragment>
         <Form layout="horizontal" className={styles.stepForm} hideRequiredMark>
           <Form.Item {...formItemLayout} label="付款账户">

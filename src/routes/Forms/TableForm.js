@@ -79,8 +79,8 @@ export default class TableForm extends PureComponent {
     setTimeout(() => {
       if (this.clickedCancel) {
         this.clickedCancel = false;
-        
-return;
+
+        return;
       }
       const target = this.getRowByKey(key) || {};
 
@@ -90,8 +90,8 @@ return;
         this.setState({
           loading: false,
         });
-        
-return;
+
+        return;
       }
       delete target.isNew;
       this.toggleEditable(e, key);
@@ -134,8 +134,8 @@ return;
               />
             );
           }
-          
-return text;
+
+          return text;
         },
       },
       {
@@ -154,8 +154,8 @@ return text;
               />
             );
           }
-          
-return text;
+
+          return text;
         },
       },
       {
@@ -176,8 +176,8 @@ return text;
               />
             );
           }
-          
-return text;
+
+          return text;
         },
       },
       {
@@ -201,8 +201,8 @@ return text;
                 </span>
               );
             }
-            
-return (
+
+            return (
               <span>
                 <a onClick={e => this.saveRow(e, record.key)}>保存</a>
                 <Divider type="vertical" />
@@ -210,8 +210,8 @@ return (
               </span>
             );
           }
-          
-return (
+
+          return (
             <span>
               <a onClick={e => this.toggleEditable(e, record.key)}>编辑</a>
               <Divider type="vertical" />
